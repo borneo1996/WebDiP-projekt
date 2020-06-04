@@ -81,7 +81,6 @@ body {
 
 .icon:hover {
     border-radius: 0;
-    transform: rotate(360deg);
 }
 
 
