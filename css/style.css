@@ -1,5 +1,6 @@
 html{
     font-size: 20px;
+    font-family: sans-serif;
 }
 
 header {
@@ -8,14 +9,6 @@ header {
     background-color: #456990;
     margin: 0;
     position: relative;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    padding-bottom: 6%;
-    height: 100%;
-    -ms-overflow-style: none;
 }
 
 .header-div{
@@ -38,10 +31,9 @@ body {
 }
 
 .logo-div {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    margin-left: 0.3rem;
+    margin-top: 0.3rem;
+    position: fixed;
 }
 
 .logout-button {
@@ -76,15 +68,17 @@ body {
     border-radius: 50%;
     transition-duration: 0.5s;
     transition-timing-function: ease;
+    border: 0.05rem solid;
 
 }
 
 .icon:hover {
     border-radius: 0;
+    border: none;
 }
 
 
-.navigation-bar a {
+.link-buttons {
     float: left;
     font-size: 0.8rem;
     color: #e4fde1;
@@ -93,8 +87,18 @@ body {
     text-decoration: none;
 }
 
+.link-active{
+    float: left;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.7rem 0.8rem;
+    text-decoration: none;
+    color: #f45b69;
+}
 
-.navigation-bar a:hover, .hover-links:hover .dropdownBtn {
+
+
+.link-buttons:hover, .hover-links:hover .dropdownBtn {
     background-color: #114b5f;
     color: #e4fde1;
 }
@@ -114,6 +118,7 @@ body {
     font-family: inherit;
     margin: 0;
 }
+
 
 .dropdown-linkovi {
     display: none;
@@ -138,3 +143,111 @@ body {
 .hover-links:hover .dropdown-linkovi {
     display: block;
   }
+
+  /*HEADER*/
+  /*BODY, Content*/
+
+body {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 6%;
+    height: 100%;
+    min-height:100%;
+    -ms-overflow-style: none;
+    position: relative;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.main-content {
+    min-width: 100%;
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+}
+
+.content-div {
+    background-color: #e4fde1;
+    border: 0.03rem solid;
+    border-top: none;
+    position: relative;
+    height: fit-content;
+    width: 100%;
+    padding: 2rem;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: grid;
+    grid-template-rows: 1rem 100% 1rem;
+}
+
+.o_autoru {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.mojaslika {
+    background-color: white;
+    width: auto;
+    height: 18rem;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    transition-duration: 1s;
+}
+
+.mojaslika:hover {
+    
+    box-shadow: 0.4rem 0.4rem 0.4rem 0 rgba(59, 59, 59, 0.356), 0 0.2rem 0.5rem 0 rgba(65, 65, 65, 0.356);
+}
+
+.autor-info {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.info-title {
+    color: #456990;
+}
+
+.info-text {
+    color: #456990;
+}
+
+
+
+/*FOOTER*/
+
+.footer {
+    position: fixed;
+    background-color: #456990;
+    bottom: 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 3.5rem;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+}
+
+.copyright-div {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: grid;
+    grid-template-rows: 25% 25% 25% 25%;
+    color: white;
+    justify-self: center;
+    align-self: center;
+    font-family: sans-serif;
+}
+
+.footer-email, .footer-ime {
+    font-size: 0.8rem;
+    justify-self: center;
+}
+
+.footer-ime {
+    color: #e4fde1;
+}
