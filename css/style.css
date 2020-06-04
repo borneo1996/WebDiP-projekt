@@ -68,7 +68,7 @@ header {
     border-radius: 50%;
     transition-duration: 0.5s;
     transition-timing-function: ease;
-    border: 0.05rem solid;
+    border: 0.03rem solid;
 
 }
 
@@ -165,7 +165,8 @@ body::-webkit-scrollbar {
     min-width: 100%;
     min-height: 100%;
     display: grid;
-    grid-template-columns: 15% 70% 15%;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 3rem 100%;
 }
 
 .content-div {
@@ -214,6 +215,25 @@ body::-webkit-scrollbar {
 
 .info-text {
     color: #456990;
+}
+
+/*REGISTRACIJA*/
+
+.registracija-div {
+    background-color: #e4fde1;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 3rem;
+}
+
+.universal-form {
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 30%;
+    padding: 5%;
 }
 
 
