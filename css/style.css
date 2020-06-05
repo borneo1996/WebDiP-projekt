@@ -169,6 +169,20 @@ body::-webkit-scrollbar {
     grid-template-rows: 3rem 100%;
 }
 
+.page-title {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: #456990;
+    color: #e4fde1;
+    font-size: 1.2rem;
+}
+
+.page-title p {
+    margin-left: 1rem;
+}
+
 .content-div {
     background-color: #e4fde1;
     border: 0.03rem solid;
@@ -217,9 +231,9 @@ body::-webkit-scrollbar {
     color: #456990;
 }
 
-/*REGISTRACIJA*/
+/*REGISTRACIJA i PRIJAVA*/
 
-.registracija-div {
+.registracija-div, .prijava-div {
     background-color: #e4fde1;
     grid-column-start: 2;
     grid-column-end: 3;
@@ -234,7 +248,9 @@ body::-webkit-scrollbar {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 30%;
     padding: 5%;
+    color: #456990;
 }
+
 
 
 
