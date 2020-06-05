@@ -192,7 +192,9 @@ body::-webkit-scrollbar {
 }
 
 .page-title p {
-    margin-left: 1rem;
+    margin-left: 2rem;
+    padding-left: 0.8rem;
+    border-left: 0.1rem solid #e4fde1;
 }
 
 .content-div {
