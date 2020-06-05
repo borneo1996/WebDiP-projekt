@@ -119,6 +119,18 @@ header {
     margin: 0;
 }
 
+.dropdownBtn-active {
+    color: #f45b69;
+    font-size: 0.8rem;  
+    border: none;
+    outline: none;
+    padding: 0.7rem 0.8rem;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+
 
 .dropdown-linkovi {
     display: none;
@@ -185,7 +197,6 @@ body::-webkit-scrollbar {
 
 .content-div {
     background-color: #e4fde1;
-    border: 0.03rem solid;
     border-top: none;
     position: relative;
     height: fit-content;
@@ -231,9 +242,85 @@ body::-webkit-scrollbar {
     color: #456990;
 }
 
+/*POČETNA SADRŽAJ*/
+
+.pocetna-sadrzaj {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+    grid-template-rows: 2rem auto auto auto auto auto auto auto 2rem;
+    background-color: #e4fde1;
+}
+
+.sadrzaj-div-1, .sadrzaj-div-2, .sadrzaj-div-3, .sadrzaj-div-4, .sadrzaj-div-5, .sadrzaj-div-6, .sadrzaj-div-7 {
+    color: #456990;
+    font-size: 0.8rem;
+    display: grid;
+    grid-template-columns: 20% 50% 50% 20%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin-top: 1rem;
+    border-bottom: 0.07rem solid #456990;
+}
+
+.sadrzaj-div-1 {
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.sadrzaj-div-2 {
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.sadrzaj-div-3 {
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+.sadrzaj-div-4 {
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+
+.sadrzaj-div-5 {
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+
+.sadrzaj-div-6 {
+    grid-row-start: 7;
+    grid-row-end: 8;
+}
+.sadrzaj-div-7 {
+    grid-row-start: 8;
+    grid-row-end: 9;
+}
+
+.sadrzaj {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    justify-self: left;
+    align-self: center;
+}
+
+.sadrzaj-img {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    justify-self: left;
+    align-self: center;
+}
+
+.pocetna-sadrzaj-img {
+    height: auto;
+    width: 3rem;
+}
+
+
 /*REGISTRACIJA i PRIJAVA*/
 
-.registracija-div, .prijava-div {
+.registracija-div, .prijava-div, .div-table, .popis-ureda{
     background-color: #e4fde1;
     grid-column-start: 2;
     grid-column-end: 3;
@@ -249,10 +336,18 @@ body::-webkit-scrollbar {
     width: 30%;
     padding: 5%;
     color: #456990;
+    text-align: center;
 }
 
+.no-account-link {
+    color: #f45b69;
+    font-size: 0.7rem;
+}
 
-
+.form-label {
+    float: left;
+    margin-left: 1.2rem;
+}
 
 /*FOOTER*/
 
