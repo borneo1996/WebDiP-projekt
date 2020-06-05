@@ -3,7 +3,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <title>Autor</title>
+    <title>Izdani računi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -24,40 +24,48 @@
                 <a href="../index.html" class="link-buttons">Početna</a>
                 <a href="prijava.html" class="link-buttons">Prijava</a>
                 <a href="registracija.html" class="link-buttons">Registracija</a>
-                <a href="#" class="link-active">Autor</a>
+                <a href="o_autoru.html" class="link-buttons">Autor</a>
                 <div class="hover-links">
-                    <button class="dropdownBtn">Popis &darr;</button>
+                    <button class="dropdownBtn-active">Popis &darr;</button>
                     <div class="dropdown-linkovi">
                         <a href="upravljanje_posiljkama.html" class="link-buttons">Upravljanje pošiljkama</a>
                         <a href="postanski-uredi.html" class="link-buttons" >Poštanski uredi</a>
-                        <a href="izdani-racuni.html" class="link-buttons">Izdani računi</a>
+                        <a href="#" class="link-active">Izdani računi</a>
                         <a href="korisnici.html" class="link-buttons">Popis korisnika</a>
                     </div>
                 </div>
             </div>
             <div class="logout-div">
-                <a href="index.html" class="logout-button">Odjava</a>
+                <a href="../index.html" class="logout-button">Odjava</a>
             </div>
         </div>
     </header>
+
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Autor</strong></p>
+            <p><strong>Upravljanje pošiljkama</strong></p>
         </div>
-        <div class="content-div">
-            <div class="o_autoru">
-                <img src="../images/mojaslika.png" alt="Autor" class="mojaslika" title="Borneo Culović">
-                <div class="autor-info">
-                    <p class="info-title"><strong>Ime i prezime:</strong></p>
-                    <p class="info-text">Borneo Culović</p>
-                    <p class="info-title"><strong>FOI mail:</strong></p>
-                    <p class="info-text">bculovic@foi.hr</p>
-                    <p class="info-title"><strong>JMBAG:</strong></p>
-                    <p class="info-text">0246064592</p>
-                </div>
-            </div>
+        <div class="div-table">
+            <table id="tablicaPosiljke" class="tablica">
+                <thead id="tHead">
+                    <tr>
+                        <th>ID</th>
+                        <th>Izdao</th>
+                        <th>Cijena pošiljke</th>
+                        <th>Cijena obrade</th>
+                        <th>Ukupna cijena</th>
+                        <th>Vrijeme izdavanja</th>
+                        <th>Rok plaćanja</th>
+                        <th>Plaćen</th>
+                    </tr>
+                </thead>
+                <tbody id="tBody">
+    
+                </tbody>
+                
+            </table>
+    
         </div>
-    </div>
 
     <div class="footer">
         <div class="copyright-div">
@@ -65,7 +73,6 @@
             <a href="mailto:bculovic@foi.hr" class="footer-email"><p>bculovic@foi.hr</p></a>
         </div>
     </div>
-
 
 </body>
 

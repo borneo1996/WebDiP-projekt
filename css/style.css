@@ -305,6 +305,10 @@ body::-webkit-scrollbar {
     align-self: center;
 }
 
+.sadrzaj a {
+    color: #f45b69;
+}
+
 .sadrzaj-img {
     grid-column-start: 3;
     grid-column-end: 4;
