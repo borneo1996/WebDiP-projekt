@@ -338,11 +338,15 @@ body::-webkit-scrollbar {
 .universal-form {
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.2), 0 0.3rem 1rem 0 rgba(0, 0, 0, 0.19);
     width: 40%;
     padding: 5%;
     color: #456990;
     text-align: center;
+}
+
+.universal-form:hover {
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2), 0 0.5rem 1.2rem 0 rgba(0, 0, 0, 0.19);
 }
 
 .no-account-link {
