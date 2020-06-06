@@ -10,7 +10,6 @@
     <meta name="keywords" content="pošta, pošiljka, poštanski ured">
     <meta name="author" content="Borneo Culović">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <script type="text/javascript" src="../javascript/script.js"></script>
 </head>
 
 <body>
@@ -43,23 +42,26 @@
     </header>
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Registracija</strong></p>
+            <p id="test"><strong>Registracija</strong></p>
         </div>
         <div class="registracija-div">
             <div class="universal-form">
                 <form action="">
                     <label for="formname" class="form-label">Ime</label><br>
-                    <input type="text" id="formname" name="ime" placeholder="Vaše ime"><br><br>
+                    <input type="text" class="form-input" id="formname" name="ime" placeholder="Vaše ime"><br><br>
                     <label for="formpname" class="form-label">Prezime</label><br>
-                    <input type="text" id="formpname" name="prezimeime" placeholder="Vaše prezime"><br><br>
+                    <input type="text" class="form-input" id="formpname" name="prezimeime" placeholder="Vaše prezime"><br><br>
                     <label for="formusername" class="form-label">Korisničko ime</label><br>
-                    <input type="text" id="formusername" name="username" placeholder="Korisničko ime"><br><br>
+                    <input type="text" class="form-input" id="formusername" name="username" placeholder="Korisničko ime"><br><br>
                     <label for="formmail" class="form-label">E-mail</label><br>
-                    <input type="email" id="formmail" name="email" placeholder="Vaš e-mail"><br><br>
+                    <input type="email" class="form-input" id="formmail" name="email" placeholder="Vaš e-mail"><br><br>
                     <label for="formpassword" class="form-label">Lozinka</label><br>
-                    <input type="password" id="formpassword" name="password" placeholder="Lozinka"><br><br>
+                    <input type="password" class="form-input" id="formpassword" name="password" placeholder="Lozinka"><br><br>
                     <label for="formpassword2" class="form-label">Ponovi lozinku</label><br>
-                    <input type="password" id="formpassword2" name="password2" placeholder="Lozinka"><br><br><br>
+                    <input type="password" class="form-input" id="formpassword2" name="password2" placeholder="Lozinka"><br><br>
+                    <label for="captcha" class="form-label">Captcha</label><br>
+                    <input type="text" class="form-input" id="captcha_text" name="captcha_text"><br>
+                    <input type="text" class="form-input" id="captcha" name="captcha" placeholder="Captcha"><br><br><br>
                     <input type="submit" id="registrirajBtn" value="Registriraj me">
                 </form>
             </div>
@@ -74,6 +76,7 @@
             </a>
         </div>
     </div>
+    <script type="text/javascript" src="../javascript/bculovic.js"></script>
 
 
 </body>

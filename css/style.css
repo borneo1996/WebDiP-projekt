@@ -339,7 +339,7 @@ body::-webkit-scrollbar {
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 30%;
+    width: 40%;
     padding: 5%;
     color: #456990;
     text-align: center;
@@ -350,9 +350,9 @@ body::-webkit-scrollbar {
     font-size: 0.7rem;
 }
 
-.form-label {
+.form-label, .form-input {
     float: left;
-    margin-left: 1.2rem;
+    margin-left: 10%;
 }
 
 /*FOOTER*/
@@ -387,4 +387,8 @@ body::-webkit-scrollbar {
 
 .footer-ime {
     color: #e4fde1;
+}
+
+.footer-email {
+    color: #f45b69;
 }
