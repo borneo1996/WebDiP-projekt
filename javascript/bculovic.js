@@ -1,5 +1,5 @@
 
-var znakovi ="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var znakovi = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var brojZnakova = znakovi.length;
 onLoad();
 var imeProvjera = false;
@@ -13,17 +13,17 @@ var brojevi = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
 
 function onLoad() {
-    disable_registrirajBtn();
-    document.getElementById("formname").addEventListener("change", provjeraImena);
-    document.getElementById("formpname").addEventListener("change", provjeraPrezimena);
-    document.getElementById("formusername").addEventListener("change", provjeraKorisnickogImena);
-    document.getElementById("formmail").addEventListener("change", provjeraMaila);
-    document.getElementById("formpassword").addEventListener("change", provjeraPassworda);
-    document.getElementById("formpassword2").addEventListener("change", provjeraPassworda);
-    document.getElementById("captcha").addEventListener("change", provjeraCaptcha);
-
-    
-    setCaptcha();
+    if (document.title === "Registracija") {
+        disable_registrirajBtn();
+        document.getElementById("formname").addEventListener("change", provjeraImena);
+        document.getElementById("formpname").addEventListener("change", provjeraPrezimena);
+        document.getElementById("formusername").addEventListener("change", provjeraKorisnickogImena);
+        document.getElementById("formmail").addEventListener("change", provjeraMaila);
+        document.getElementById("formpassword").addEventListener("change", provjeraPassworda);
+        document.getElementById("formpassword2").addEventListener("change", provjeraPassworda);
+        document.getElementById("captcha").addEventListener("change", provjeraCaptcha);
+        setCaptcha();
+    }
 }
 
 function provjeraImena() {
@@ -91,7 +91,7 @@ function provjeraKorisnickogImena() {
         document.getElementById("formusername").style.borderColor = "red";
     }
 
-    if(duzinaUnosa < 8){
+    if (duzinaUnosa < 8) {
         console.log("Korisničko ime je prekratko.");
         korisnickoimeProvjera = false;
         document.getElementById("formusername").style.borderColor = "red";
@@ -139,18 +139,18 @@ function provjeraMaila() {
         emailProvjera = false;
     }
 
-    if(unos[duzinaUnosa-1] !== "r" || unos[duzinaUnosa-2] !== "h" || unos[duzinaUnosa-3] !== "."){
+    if (unos[duzinaUnosa - 1] !== "r" || unos[duzinaUnosa - 2] !== "h" || unos[duzinaUnosa - 3] !== ".") {
         console.log("Email mora završavati na .hr");
         document.getElementById("formmail").style.borderColor = "red";
         emailProvjera = false;
     }
-    if(emailProvjera){
+    if (emailProvjera) {
         console.log("Dobra");
     }
     provjeraForme();
 }
 
-function provjeraPassworda(){
+function provjeraPassworda() {
     var unos = document.getElementById("formpassword").value;
     var unos2 = document.getElementById("formpassword2").value;
     passwordProvjera = true;
@@ -158,11 +158,11 @@ function provjeraPassworda(){
     document.getElementById("formpassword2").style.borderColor = null;
     var duzinaUnosa = unos.length;
 
-    if(duzinaUnosa < 8){
+    if (duzinaUnosa < 8) {
         passwordProvjera = false;
         console.log("Password mora imati barem 8 znamenki.");
         document.getElementById("formpassword").style.borderColor = "red";
-    } else if (unos !== unos2){
+    } else if (unos !== unos2) {
         document.getElementById("formpassword").style.borderColor = null;
         document.getElementById("formpassword2").style.borderColor = null;
         passwordProvjera = false;
@@ -174,12 +174,12 @@ function provjeraPassworda(){
 
 }
 
-function provjeraCaptcha(){
+function provjeraCaptcha() {
     var unos = document.getElementById("captcha").value;
     var captcha = document.getElementById("captcha_text").value;
     document.getElementById("captcha").style.borderColor = null;
     captchaProvjera = true;
-    if(unos !== captcha){
+    if (unos !== captcha) {
         document.getElementById("captcha").style.borderColor = "red";
         captchaProvjera = false;
     } else {
@@ -206,18 +206,18 @@ function provjeraForme() {
     }
 }
 
-function setCaptcha(){
+function setCaptcha() {
     var captcha = "";
-    for(var i = 0; i < 7 ; i++){
+    for (var i = 0; i < 7; i++) {
         var randbroj = randomBroj();
         captcha += znakovi[randbroj];
     }
     document.getElementById("captcha_text").value = captcha;
     document.getElementById("captcha_text").disabled = true;
-    
+
 }
 
-function randomBroj(){
+function randomBroj() {
     var broj = Math.random() * (brojZnakova);
     return parseInt(broj);
 }
