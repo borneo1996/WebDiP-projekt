@@ -10,6 +10,7 @@
     <meta name="keywords" content="pošta, pošiljka, poštanski ured">
     <meta name="author" content="Borneo Culović">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="../javascript/bculovic_jquery.js"></script>
@@ -47,20 +48,20 @@
 
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Upravljanje pošiljkama</strong></p>
+            <p><strong>Izdani računi</strong></p>
         </div>
         <div class="div-table">
-            <table id="tablicaPosiljke" class="tablica">
+            <table id="tablicaRacuni" class="tablica">
                 <thead id="tHead">
                     <tr>
                         <th>ID</th>
                         <th>Izdao</th>
-                        <th>Cijena pošiljke</th>
-                        <th>Cijena obrade</th>
-                        <th>Ukupna cijena</th>
                         <th>Vrijeme izdavanja</th>
                         <th>Rok plaćanja</th>
                         <th>Plaćen</th>
+                        <th>Cijena pošiljke (u kn)</th>
+                        <th>Cijena obrade (u kn)</th>
+                        <th>Ukupna cijena (u kn)</th>
                     </tr>
                 </thead>
                 <tbody id="tBody">
