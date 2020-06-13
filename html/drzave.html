@@ -2,7 +2,7 @@
 <html lang="hr">
 
 <head>
-    <title>Prijava</title>
+    <title>Popis država</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -10,7 +10,9 @@
     <meta name="keywords" content="pošta, pošiljka, poštanski ured">
     <meta name="author" content="Borneo Culović">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="../javascript/bculovic_jquery.js"></script>
     <script type="text/javascript" src="../javascript/bculovic.js"></script>
 </head>
@@ -25,43 +27,45 @@
             </div>
             <div class="navigation-bar">
                 <a href="../index.html" class="link-buttons">Početna</a>
-                <a href="#" class="link-active">Prijava</a>
+                <a href="prijava.html" class="link-buttons">Prijava</a>
                 <a href="registracija.html" class="link-buttons">Registracija</a>
                 <a href="o_autoru.html" class="link-buttons">Autor</a>
                 <div class="hover-links">
-                    <button class="dropdownBtn">Popis &darr;</button>
+                    <button class="dropdownBtn-active">Popis &darr;</button>
                     <div class="dropdown-linkovi">
                         <a href="upravljanje_posiljkama.html" class="link-buttons">Upravljanje pošiljkama</a>
                         <a href="postanski-uredi.html" class="link-buttons" >Poštanski uredi</a>
                         <a href="izdani-racuni.html" class="link-buttons">Izdani računi</a>
                         <a href="korisnici.html" class="link-buttons">Popis korisnika</a>
-                        <a href="drzave.html" class="link-buttons">Države</a>
+                        <a href="#" class="link-active">Države</a>
                     </div>
                 </div>
             </div>
             <div class="logout-div">
-                <a href="index.html" class="logout-button">Odjava</a>
+                <a href="../index.html" class="logout-button">Odjava</a>
             </div>
         </div>
     </header>
 
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Prijava</strong></p>
+            <p><strong>Popis država</strong></p>
         </div>
-        <div class="prijava-div">
-            <div class="universal-form">
-                <form action="">
-                    <label for="formusername" class="form-label">Korisničko ime</label><br>
-                    <input type="text" id="formusername" name="username" placeholder="Korisničko ime"><br><br>
-                    <label for="formpassword" class="form-label">Lozinka</label><br>
-                    <input type="password" id="formpassword" name="password" placeholder="Lozinka"><br><br>
-                    <a href="registracija.html" class="no-account-link"><p>Nemaš račun? Klikni ovdje.</p></a>
-                    <input type="submit" value="Prijava">
-                </form>
-            </div>
+        <div class="div-table">
+            <table id="tablicaDrzave" class="tablica">
+                <thead id="tHead">
+                    <tr>
+                        <th>ID</th>
+                        <th>Naziv</th>
+                    </tr>
+                </thead>
+                <tbody id="tBody">
+    
+                </tbody>
+                
+            </table>
+    
         </div>
-    </div>
 
     <div class="footer">
         <div class="copyright-div">
@@ -69,7 +73,6 @@
             <a href="mailto:bculovic@foi.hr" class="footer-email"><p>bculovic@foi.hr</p></a>
         </div>
     </div>
-
 
 </body>
 

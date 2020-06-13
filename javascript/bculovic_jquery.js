@@ -159,8 +159,9 @@ $(document).ready(function () {
                     var kilaza = posiljke[i].kilaža;
                     var isporuka = posiljke[i].isporuka;
                     var dostavljen = posiljke[i].dostavljena;
-                    var next = posiljke[i].naziv;
-                    var last = posiljke[i].naziv;
+                    var starting = posiljke[i].polazni;
+                    var next = posiljke[i].sljedeci;
+                    var last = posiljke[i].zadnji;
                     var za = posiljke[i].ime + " " + posiljke[i].prezime;
 
                     if(isporuka == 1){
@@ -181,6 +182,7 @@ $(document).ready(function () {
                         $('<td>').text(kilaza),
                         $('<td>').text(isporuka),
                         $('<td>').text(dostavljen),
+                        $('<td>').text(starting),
                         $('<td>').text(next),
                         $('<td>').text(last),
                         $('<td>').text(za)
