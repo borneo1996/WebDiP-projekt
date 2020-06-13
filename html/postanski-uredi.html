@@ -2,7 +2,7 @@
 <html lang="hr">
 
 <head>
-    <title>Upravljanje pošiljkama</title>
+    <title>Poštanski uredi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -10,6 +10,7 @@
     <meta name="keywords" content="pošta, pošiljka, poštanski ured">
     <meta name="author" content="Borneo Culović">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="../javascript/bculovic_jquery.js"></script>
@@ -50,9 +51,10 @@
             <p><strong>Poštanski uredi</strong></p>
         </div>
         <div class="div-table">
-            <table id="tablicaPosiljke" class="tablica">
+            <table id="tablicaUreda" class="tablica">
                 <thead id="tHead">
                     <tr>
+                        <th>ID</th>
                         <th>Naziv</th>
                         <th>Adresa</th>
                         <th>Grad</th>

@@ -3,8 +3,8 @@
 class Baza {
 
     const server = "localhost";
-    const korisnik = "WebDiP";
-    const lozinka = "2016foi";
+    const korisnik = "WebDiP2019x018";
+    const lozinka = "admin_BJ6h";
     const baza = "WebDiP2019x018";
 
     private $veza = null;

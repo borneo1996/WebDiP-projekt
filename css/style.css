@@ -177,7 +177,7 @@ body::-webkit-scrollbar {
     min-width: 100%;
     min-height: 100%;
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 10% 80% 10%;
     grid-template-rows: 3rem 100%;
 }
 
@@ -335,6 +335,7 @@ body::-webkit-scrollbar {
     padding: 3rem;
 }
 
+
 .universal-form {
     margin-left: auto;
     margin-right: auto;
@@ -358,6 +359,30 @@ body::-webkit-scrollbar {
     float: left;
     margin-left: 10%;
 }
+
+.tablica {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 0.7rem;
+}
+
+.tablica td, th {
+    border: 0.05rem solid #456990;
+    color: #456990;
+    background-color: white;
+}
+
+.tablica th {
+    background-color: #cbffc4;
+}
+
+.tablica td:hover, th:hover {
+    background-color: #e4fde1;
+}
+
+
 
 /*FOOTER*/
 
