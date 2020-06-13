@@ -196,4 +196,31 @@ $(document).ready(function () {
             } 
         });
     }
+    if (naslov == "Popis država") {
+        $.ajax({
+            url: 'http://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/drzave.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (rezultat) {
+                const drzave = $(rezultat);
+                const tablica = $('#tablicaDrzave');
+                var i = 0;
+                var count = drzave.length;
+                for(i;i<count;i++){
+                    var id = drzave[i].drzava_id;
+                    var drzava = drzave[i].naziv_drzave;
+                    console.log(drzave[i].naziv);
+                    var redak = $('<tr>').append(
+                        $('<td>').text(id),
+                        $('<td>').text(drzava)
+                    );
+                    tablica.append(redak);
+                }
+                $("#tablicaDrzave").dataTable();
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+    }
 })
