@@ -382,7 +382,10 @@ body::-webkit-scrollbar {
     background-color: #e4fde1;
 }
 
-
+.poruka {
+    color: #f45b69;
+    font-size: 0.8rem;
+}
 
 /*FOOTER*/
 

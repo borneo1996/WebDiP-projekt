@@ -13,5 +13,6 @@ $polje = array();
 while($var=$rezultat->fetch_array()){
     array_push($polje, $var);
 }
+$veza->zatvoriDB();
 echo json_encode($polje);
 ?>
