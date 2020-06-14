@@ -6,9 +6,7 @@ $veza->spojiDB();
 error_reporting(0);
 $korisnickoIme = $_GET['username'];
 $lozinka = $_GET['password'];
-$email ="";
-$blokiran = false;
-$uloga = "0";
+$auth = null;
 
 $upit = "SELECT * FROM korisnik WHERE korisnicko_ime='{$korisnickoIme}' AND lozinka='{$lozinka}';";
 $rezultat = $veza->selectDB($upit);
@@ -16,6 +14,8 @@ while($redak = mysqli_fetch_array($rezultat)){
     if($redak){
         $auth = true;
         $email = $redak['email'];
+        $username = $redak['korisnicko_ime'];
+        $password = $redak['lozinka'];
         if($redak['blokiran_do']){
             $blokiran = true;
         }
@@ -25,13 +25,13 @@ while($redak = mysqli_fetch_array($rezultat)){
 if($auth){
     $poruka = "Uspješna prijava!";
     setcookie("auth", $korisnickoIme, false, '/', false);
+    setcookie("pass", $lozinka, false, '/', false);
     setcookie("uloga", $uloga, false, '/', false);
-} else {
+} else if ($auth == false){
     $poruka = "Neuspješna prijava!";
 }
 
 $veza->zatvoriDB();
-echo $uloga;
 ?>
 
 <!DOCTYPE html>
@@ -106,10 +106,10 @@ echo $uloga;
                     <div class="universal-form">
                         <form action="../php/odjava.php" novalidate name="prijava" method="get" id="prijava">
                             <label for="formusername" class="form-label">Korisničko ime</label><br>
-                            <input type="text" id="formusername" name="username" placeholder="Korisničko ime" disabled><br><br>
+                            <input type="text" id="formusername" name="username" placeholder="'. $_COOKIE['auth'] .'" disabled><br><br>
                             <label for="formpassword" class="form-label">Lozinka</label><br>
-                            <input type="password" id="formpassword" name="password" placeholder="Lozinka" disabled><br><br>
-                            <p class="poruka">Već si ulogiran si!</p>
+                            <input type="password" id="formpassword" name="password" placeholder="" disabled><br><br>
+                            <p class="poruka">Ulogiran si!</p>
                             <input id="logout" type="submit" name="logout" value="Odjava">
                         </form>
                     </div>
