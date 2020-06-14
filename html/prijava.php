@@ -1,37 +1,48 @@
 <?php
-require '../php/baza.class.php';
-
-$veza = new Baza();
-$veza->spojiDB();
 error_reporting(0);
-$korisnickoIme = $_GET['username'];
-$lozinka = $_GET['password'];
-$auth = null;
+require '../php/session.php';
+require '../php/baza.class.php';
+if($_SESSION['ulogiraniKorisnik'] == null){
+    $veza = new Baza();
+    $veza->spojiDB();
+    $korisnickoIme = $_GET['username'];
+    $lozinka = $_GET['password'];
+    $auth = null;
 
-$upit = "SELECT * FROM korisnik WHERE korisnicko_ime='{$korisnickoIme}' AND lozinka='{$lozinka}';";
-$rezultat = $veza->selectDB($upit);
-while($redak = mysqli_fetch_array($rezultat)){
-    if($redak){
-        $auth = true;
-        $email = $redak['email'];
-        $username = $redak['korisnicko_ime'];
-        $password = $redak['lozinka'];
-        if($redak['blokiran_do']){
-            $blokiran = true;
+    $upit = "SELECT * FROM korisnik WHERE korisnicko_ime='{$korisnickoIme}' AND lozinka='{$lozinka}';";
+    $rezultat = $veza->selectDB($upit);
+    while($redak = mysqli_fetch_array($rezultat)){
+        if($redak){
+            if($redak['blokiran_do']){
+                $blokiran = true;
+                $auth = false;
+                $_SESSION['blokiran'] = true;
+                $_SESSION['ulogiraniKorisnik'] = $redak['korisnicko_ime'];
+                $_SESSION['uloga'] = 0;
+            } else {
+                $auth = true;
+                $email = $redak['email'];
+                $username = $redak['korisnicko_ime'];
+                $_SESSION['ulogiraniKorisnik'] = $redak['korisnicko_ime'];
+                $password = $redak['lozinka'];
+                $uloga = $redak['uloga_uloga_id'];
+                $_SESSION['uloga'] = $redak['uloga_uloga_id'];
+                $_SESSION['blokiran'] = false;
+            }
         }
-        $uloga = $redak['uloga_uloga_id'];
     }
-}
-if($auth){
-    $poruka = "Uspješna prijava!";
-    setcookie("auth", $korisnickoIme, false, '/', false);
-    setcookie("pass", $lozinka, false, '/', false);
-    setcookie("uloga", $uloga, false, '/', false);
-} else if ($auth == false){
-    $poruka = "Neuspješna prijava!";
-}
+    if($auth){
+        $poruka = "Uspješna prijava!";
+        setcookie("auth", $korisnickoIme, false, '/', false);
+        setcookie("pass", $lozinka, false, '/', false);
+        setcookie("uloga", $uloga, false, '/', false);
+        header("Refresh:0; url=../index.html");
+    } else if ($auth == false){
+        $poruka = "Neuspješna prijava!";
+    }
 
-$veza->zatvoriDB();
+    $veza->zatvoriDB();
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,28 +66,28 @@ $veza->zatvoriDB();
     <header>
         <div class="header-div">
             <div class="logo-div">
-                <a href="../index.html" class="logo-ico">
+                <a href="../index.php" class="logo-ico">
                     <img src="../images/posta_logo.png" class="icon" alt="posta_logo" title="Početna">
                 </a>
             </div>
             <div class="navigation-bar">
-                <a href="../index.html" class="link-buttons">Početna</a>
+                <a href="../index.php" class="link-buttons">Početna</a>
                 <a href="#" class="link-active">Prijava</a>
-                <a href="registracija.html" class="link-buttons">Registracija</a>
+                <a href="registracija.php" class="link-buttons">Registracija</a>
                 <a href="o_autoru.html" class="link-buttons">Autor</a>
                 <div class="hover-links">
                     <button class="dropdownBtn">Popis &darr;</button>
                     <div class="dropdown-linkovi">
-                        <a href="upravljanje_posiljkama.html" class="link-buttons">Upravljanje pošiljkama</a>
-                        <a href="postanski-uredi.html" class="link-buttons" >Poštanski uredi</a>
-                        <a href="izdani-racuni.html" class="link-buttons">Izdani računi</a>
-                        <a href="korisnici.html" class="link-buttons">Popis korisnika</a>
-                        <a href="drzave.html" class="link-buttons">Države</a>
+                        <a href="upravljanje_posiljkama.php" class="link-buttons">Upravljanje pošiljkama</a>
+                        <a href="postanski-uredi.php" class="link-buttons" >Poštanski uredi</a>
+                        <a href="izdani-racuni.php" class="link-buttons">Izdani računi</a>
+                        <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
+                        <a href="drzave.php" class="link-buttons">Države</a>
                     </div>
                 </div>
             </div>
             <div class="logout-div">
-                <a href="index.html" class="logout-button">Odjava</a>
+                <a href="../index.php" class="logout-button">Odjava</a>
             </div>
         </div>
     </header>
@@ -86,7 +97,7 @@ $veza->zatvoriDB();
             <p><strong>Prijava</strong></p>
         </div>
         <?php
-        if(!isset($_COOKIE['auth'])) {
+        if($_SESSION['ulogiraniKorisnik'] == null) {
             echo 
                 '<div class="prijava-div">
                     <div class="universal-form">
@@ -95,7 +106,7 @@ $veza->zatvoriDB();
                             <input type="text" id="formusername" name="username" placeholder="Korisničko ime"><br><br>
                             <label for="formpassword" class="form-label">Lozinka</label><br>
                             <input type="password" id="formpassword" name="password" placeholder="Lozinka"><br><br>
-                            <a href="registracija.html" class="no-account-link"><p>Nemaš račun? Klikni ovdje.</p></a>
+                            <a href="registracija.php" class="no-account-link"><p>Nemaš račun? Klikni ovdje.</p></a>
                             <input id="submit" type="submit" name="submit" value="Prijava">
                         </form>
                     </div>
@@ -106,10 +117,10 @@ $veza->zatvoriDB();
                     <div class="universal-form">
                         <form action="../php/odjava.php" novalidate name="prijava" method="get" id="prijava">
                             <label for="formusername" class="form-label">Korisničko ime</label><br>
-                            <input type="text" id="formusername" name="username" placeholder="'. $_COOKIE['auth'] .'" disabled><br><br>
+                            <input type="text" id="formusername" name="username" placeholder="'. $_SESSION['ulogiraniKorisnik'] .'" disabled><br><br>
                             <label for="formpassword" class="form-label">Lozinka</label><br>
                             <input type="password" id="formpassword" name="password" placeholder="" disabled><br><br>
-                            <p class="poruka">Ulogiran si!</p>
+                            <p class="poruka">'. $_SESSION['ulogiraniKorisnik'] .', ulogiran si!</p>
                             <input id="logout" type="submit" name="logout" value="Odjava">
                         </form>
                     </div>

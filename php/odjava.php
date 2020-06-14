@@ -1,13 +1,30 @@
 <?php
-if(isset($_COOKIE['auth'])){
-    unset($_COOKIE['auth']);
-    setcookie('auth', null, -1, '/');
 
-}
-if(isset($_COOKIE['uloga'])){
-    unset($_COOKIE['uloga']);
-    setcookie('uloga', null, -1, '/');
+function odjava(){
+    session_unset($_SESSION['ulogiraniKorisnik']);
+    session_unset($_SESSION['blokiran']);
+    session_unset($_SESSION['uloga']);
+
+    if(isset($_COOKIE['auth'])){
+        unset($_COOKIE['auth']);
+        setcookie('auth', null, -1, '/');
+    
+    }
+    if(isset($_COOKIE['uloga'])){
+        unset($_COOKIE['uloga']);
+        setcookie('uloga', null, -1, '/');
+    }
+
+    if(isset($_COOKIE['pass'])){
+        unset($_COOKIE['pass']);
+        setcookie('pass', null, -1, '/');
+    }
+
+    session_start();
+    session_destroy();
+    $_SESSION = array();
 }
 
-header("Refresh:0; url=../html/prijava.php");
+odjava();
+header("Refresh:0; url=../index.php");
 ?>

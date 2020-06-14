@@ -1,3 +1,7 @@
+<?php
+require_once '../php/session.php';
+?>
+
 <!DOCTYPE html>
 <html lang="hr">
 
@@ -21,28 +25,28 @@
     <header>
         <div class="header-div">
             <div class="logo-div">
-                <a href="../index.html" class="logo-ico">
+                <a href="../index.php" class="logo-ico">
                     <img src="../images/posta_logo.png" class="icon" alt="posta_logo" title="Početna">
                 </a>
             </div>
             <div class="navigation-bar">
-                <a href="../index.html" class="link-buttons">Početna</a>
+                <a href="../index.php" class="link-buttons">Početna</a>
                 <a href="prijava.php" class="link-buttons">Prijava</a>
-                <a href="registracija.html" class="link-buttons">Registracija</a>
+                <a href="registracija.php" class="link-buttons">Registracija</a>
                 <a href="o_autoru.html" class="link-buttons">Autor</a>
                 <div class="hover-links">
                     <button class="dropdownBtn-active">Popis &darr;</button>
                     <div class="dropdown-linkovi">
-                        <a href="upravljanje_posiljkama.html" class="link-buttons">Upravljanje pošiljkama</a>
+                        <a href="upravljanje_posiljkama.php" class="link-buttons">Upravljanje pošiljkama</a>
                         <a href="#" class="link-active" >Poštanski uredi</a>
-                        <a href="izdani-racuni.html" class="link-buttons">Izdani računi</a>
-                        <a href="korisnici.html" class="link-buttons">Popis korisnika</a>
-                        <a href="drzave.html" class="link-buttons">Države</a>
+                        <a href="izdani-racuni.php" class="link-buttons">Izdani računi</a>
+                        <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
+                        <a href="drzave.php" class="link-buttons">Države</a>
                     </div>
                 </div>
             </div>
             <div class="logout-div">
-                <a href="../index.html" class="logout-button">Odjava</a>
+                <a href="../index.php" class="logout-button">Odjava</a>
             </div>
         </div>
     </header>
