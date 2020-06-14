@@ -36,12 +36,16 @@ if($_SESSION['ulogiraniKorisnik'] == null){
         setcookie("auth", $korisnickoIme, false, '/', false);
         setcookie("pass", $lozinka, false, '/', false);
         setcookie("uloga", $uloga, false, '/', false);
-        header("Refresh:0; url=../index.html");
+        header("Refresh:0; url=../index.php");
     } else if ($auth == false){
         $poruka = "Neuspješna prijava!";
     }
 
     $veza->zatvoriDB();
+    if(!isset($_COOKIE['uloga'])){
+        $_COOKIE['uloga'] = 1;
+    }
+    $_SESSION['uloga'] = $_COOKIE['uloga'];
 }
 ?>
 
@@ -86,9 +90,15 @@ if($_SESSION['ulogiraniKorisnik'] == null){
                     </div>
                 </div>
             </div>
-            <div class="logout-div">
-                <a href="../index.php" class="logout-button">Odjava</a>
-            </div>
+            <?php
+                if($_SESSION['uloga'] >= 2){
+                    echo '
+                        <div class="logout-div">
+                            <a href="../odjava.php" class="logout-button">Odjava</a>
+                        </div>
+                    ';
+                }
+            ?>
         </div>
     </header>
 

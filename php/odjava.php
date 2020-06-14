@@ -19,7 +19,7 @@ function odjava(){
         unset($_COOKIE['pass']);
         setcookie('pass', null, -1, '/');
     }
-
+    $_COOKIE['uloga'] = 1;
     session_start();
     session_destroy();
     $_SESSION = array();

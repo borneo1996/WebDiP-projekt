@@ -1,5 +1,9 @@
 <?php
 require_once '../php/session.php';
+if(!isset($_COOKIE['uloga'])){
+    $_COOKIE['uloga'] = 1;
+}
+$_SESSION['uloga'] = $_COOKIE['uloga'];
 ?>
 
 
@@ -35,17 +39,23 @@ require_once '../php/session.php';
                 <div class="hover-links">
                     <button class="dropdownBtn">Popis &darr;</button>
                     <div class="dropdown-linkovi">
-                        <a href="upravljanje_posiljkama.html" class="link-buttons">Upravljanje pošiljkama</a>
-                        <a href="postanski-uredi.html" class="link-active" >Poštanski uredi</a>
+                        <a href="upravljanje_posiljkama.php" class="link-buttons">Upravljanje pošiljkama</a>
+                        <a href="postanski-uredi.php" class="link-active" >Poštanski uredi</a>
                         <a href="izdani-racuni.php" class="link-buttons">Izdani računi</a>
                         <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
                         <a href="drzave.php" class="link-buttons">Države</a>
                     </div>
                 </div>
             </div>
-            <div class="logout-div">
-                <a href="../index.php" class="logout-button">Odjava</a>
-            </div>
+            <?php
+                if($_SESSION['uloga'] >= 2){
+                    echo '
+                        <div class="logout-div">
+                            <a href="../odjava.php" class="logout-button">Odjava</a>
+                        </div>
+                    ';
+                }
+            ?>
         </div>
     </header>
     <div class="main-content">

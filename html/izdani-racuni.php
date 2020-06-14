@@ -1,5 +1,9 @@
 <?php
 require_once '../php/session.php';
+if(!isset($_COOKIE['uloga'])){
+    $_COOKIE['uloga'] = 1;
+}
+$_SESSION['uloga'] = $_COOKIE['uloga'];
 ?>
 
 <!DOCTYPE html>
@@ -45,15 +49,21 @@ require_once '../php/session.php';
                     </div>
                 </div>
             </div>
-            <div class="logout-div">
-                <a href="../index.php" class="logout-button">Odjava</a>
-            </div>
+            <?php
+                if($_SESSION['uloga'] >= 2){
+                    echo '
+                        <div class="logout-div">
+                            <a href="../odjava.php" class="logout-button">Odjava</a>
+                        </div>
+                    ';
+                }
+            ?>
         </div>
     </header>
 
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Izdani računi</strong></p>
+            <p><strong>Računi</strong></p>
         </div>
         <div class="div-table">
             <table id="tablicaRacuni" class="tablica">
