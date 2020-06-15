@@ -11,14 +11,17 @@ if($_SESSION['ulogiraniKorisnik'] == null){
 
     $upit = "SELECT * FROM korisnik WHERE korisnicko_ime='{$korisnickoIme}' AND lozinka='{$lozinka}';";
     $rezultat = $veza->selectDB($upit);
+    if($rezultat){
+        $naden = true;
+    } else {
+        $naden = false;
+        $poruka = "Krivo unešeni podaci!";
+    }
     while($redak = mysqli_fetch_array($rezultat)){
         if($redak){
             if($redak['blokiran_do']){
-                $blokiran = true;
                 $auth = false;
-                $_SESSION['blokiran'] = true;
-                $_SESSION['ulogiraniKorisnik'] = $redak['korisnicko_ime'];
-                $_SESSION['uloga'] = 0;
+                $poruka = "Račun je blokiran do ".$redak['blokiran_do'];
             } else {
                 $auth = true;
                 $email = $redak['email'];
@@ -27,18 +30,16 @@ if($_SESSION['ulogiraniKorisnik'] == null){
                 $password = $redak['lozinka'];
                 $uloga = $redak['uloga_uloga_id'];
                 $_SESSION['uloga'] = $redak['uloga_uloga_id'];
-                $_SESSION['blokiran'] = false;
             }
         }
     }
     if($auth){
-        $poruka = "Uspješna prijava!";
         setcookie("auth", $korisnickoIme, false, '/', false);
         setcookie("pass", $lozinka, false, '/', false);
         setcookie("uloga", $uloga, false, '/', false);
         header("Refresh:0; url=../index.php");
     } else if ($auth == false){
-        $poruka = "Neuspješna prijava!";
+        setcookie("poruka", $poruka, false, '/', false);
     }
 
     $veza->zatvoriDB();
@@ -111,7 +112,7 @@ if($_SESSION['ulogiraniKorisnik'] == null){
             echo 
                 '<div class="prijava-div">
                     <div class="universal-form">
-                        <form action="prijava.php" novalidate name="prijava" method="get" id="prijava">
+                        <form action="" novalidate name="prijava" method="get" id="prijava">
                             <label for="formusername" class="form-label">Korisničko ime</label><br>
                             <input type="text" id="formusername" name="username" placeholder="Korisničko ime"><br><br>
                             <label for="formpassword" class="form-label">Lozinka</label><br>

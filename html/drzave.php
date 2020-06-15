@@ -53,7 +53,7 @@ $_SESSION['uloga'] = $_COOKIE['uloga'];
                 if($_SESSION['uloga'] >= 2){
                     echo '
                         <div class="logout-div">
-                            <a href="../odjava.php" class="logout-button">Odjava</a>
+                            <a href="../php/odjava.php" class="logout-button">Odjava</a>
                         </div>
                     ';
                 }

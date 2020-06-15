@@ -61,11 +61,15 @@ $_SESSION['uloga'] = $_COOKIE['uloga'];
                                 <a href="html/izdani-racuni.php" class="link-buttons">Izdani računi</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="logout-div">
-                        <a href="php/odjava.php" class="logout-button">Odjava</a>
-                    </div>
-                    ';
+                    </div>';
+                    if($_SESSION['blokiran'] == false || $_SESSION['blokiran'] == null){
+                        echo '
+                            <div class="ulogiraniKorisnik"><p>'. $_SESSION['ulogiraniKorisnik'] . '</p></div>
+                            <div class="logout-div">
+                                <a href="php/odjava.php" class="logout-button">Odjava</a>
+                            </div>
+                        ';
+                    }
                 } else if ($_SESSION['uloga'] < 4 ){
                     echo '
                         <div class="navigation-bar">
@@ -205,6 +209,7 @@ $_SESSION['uloga'] = $_COOKIE['uloga'];
             </a>
         </div>
     </div>
+
 
 </body>
 
