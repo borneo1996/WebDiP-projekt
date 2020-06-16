@@ -1,10 +1,20 @@
 <?php
 error_reporting(0);
 require_once 'php/session.php';
+
 if(!isset($_COOKIE['uloga'])){
     $_COOKIE['uloga'] = 1;
 }
-$_SESSION['uloga'] = $_COOKIE['uloga'];
+if(isset($_SESSION['aktiviran'])){
+    if($_SESSION['aktiviran']==0){
+        $_SESSION['uloga']=1;
+        $akt = false;
+    } else {
+        $_SESSION['uloga'] = $_COOKIE['uloga'];
+        $akt = true;
+    }
+}
+$user = $_SESSION['ulogiraniKorisnik'];
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +29,7 @@ $_SESSION['uloga'] = $_COOKIE['uloga'];
     <meta name="keywords" content="pošta, pošiljka, poštanski ured">
     <meta name="author" content="Borneo Culović">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="javascript/script.js"></script>
+    <script type="text/javascript" src="javascript/bculovic.js"></script>
 </head>
 
 <body>
@@ -32,20 +42,44 @@ $_SESSION['uloga'] = $_COOKIE['uloga'];
             </div>
             <?php
                 if($_SESSION['uloga'] < 2 ){
-                    echo '
-                    <div class="navigation-bar">
-                        <a href="#" class="link-active">Početna</a>
-                        <a href="html/prijava.php" class="link-buttons">Prijava</a>
-                        <a href="html/registracija.php" class="link-buttons">Registracija</a>
-                        <a href="html/o_autoru.html" class="link-buttons">Autor</a>
-                        <div class="hover-links">
-                            <button class="dropdownBtn">Popis &darr;</button>
-                            <div class="dropdown-linkovi">
-                                <a href="html/postanski-uredi.php" class="link-buttons">Poštanski uredi</a>
+                    if(!$akt && $user != null){
+                        echo '
+                        <div class="navigation-bar">
+                            <a href="#" class="link-active">Početna</a>
+                            <a href="html/prijava.php" class="link-buttons">Prijava</a>
+                            <a href="html/registracija.php" class="link-buttons">Registracija</a>
+                            <a href="html/o_autoru.html" class="link-buttons">Autor</a>
+                            <div class="hover-links">
+                                <button class="dropdownBtn">Popis &darr;</button>
+                                <div class="dropdown-linkovi">
+                                    <a href="html/postanski-uredi.php" class="link-buttons">Poštanski uredi</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    ';
+                        <div class="ulogiraniKorisnik">
+                            <a href="html/aktivacija.php">Aktiviraj račun</a>
+                            <p>'. $_SESSION['ulogiraniKorisnik']. '</p></div>
+                            <div class="logout-div">
+                                <a href="php/odjava.php" class="logout-button">Odjava</a>
+                            </div>
+                        ';
+                    } else {
+                        echo '
+                        <div class="navigation-bar">
+                            <a href="#" class="link-active">Početna</a>
+                            <a href="html/prijava.php" class="link-buttons">Prijava</a>
+                            <a href="html/registracija.php" class="link-buttons">Registracija</a>
+                            <a href="html/o_autoru.html" class="link-buttons">Autor</a>
+                            <div class="hover-links">
+                                <button class="dropdownBtn">Popis &darr;</button>
+                                <div class="dropdown-linkovi">
+                                    <a href="html/postanski-uredi.php" class="link-buttons">Poštanski uredi</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        ';
+                    }
                 } else if ($_SESSION['uloga'] < 3 ){
                     echo '
                         <div class="navigation-bar">
@@ -64,7 +98,8 @@ $_SESSION['uloga'] = $_COOKIE['uloga'];
                     </div>';
                     if($_SESSION['blokiran'] == false || $_SESSION['blokiran'] == null){
                         echo '
-                            <div class="ulogiraniKorisnik"><p>'. $_SESSION['ulogiraniKorisnik'] . '</p></div>
+                            <div class="ulogiraniKorisnik">
+                            <p>'. $_SESSION['ulogiraniKorisnik']. '</p></div>
                             <div class="logout-div">
                                 <a href="php/odjava.php" class="logout-button">Odjava</a>
                             </div>
@@ -86,11 +121,15 @@ $_SESSION['uloga'] = $_COOKIE['uloga'];
                                 <a href="html/korisnici.php" class="link-buttons">Popis korisnika</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="logout-div">
-                        <a href="php/odjava.php" class="logout-button">Odjava</a>
-                    </div>
-                    ';
+                    </div>';
+                    if($_SESSION['blokiran'] == false || $_SESSION['blokiran'] == null){
+                        echo '
+                            <div class="ulogiraniKorisnik"><p>'. $_SESSION['ulogiraniKorisnik'] . '</p></div>
+                            <div class="logout-div">
+                                <a href="php/odjava.php" class="logout-button">Odjava</a>
+                            </div>
+                        ';
+                    }
                 } else if ($_SESSION['uloga'] < 5 ){
                     echo '
                         <div class="navigation-bar">
@@ -108,11 +147,15 @@ $_SESSION['uloga'] = $_COOKIE['uloga'];
                                 <a href="html/drzave.php" class="link-buttons">Države</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="logout-div">
-                        <a href="php/odjava.php" class="logout-button">Odjava</a>
-                    </div>
-                    ';
+                    </div>';
+                    if($_SESSION['blokiran'] == false || $_SESSION['blokiran'] == null){
+                        echo '
+                            <div class="ulogiraniKorisnik"><p>'. $_SESSION['ulogiraniKorisnik'] . '</p></div>
+                            <div class="logout-div">
+                                <a href="php/odjava.php" class="logout-button">Odjava</a>
+                            </div>
+                        ';
+                    }
                 }
             ?>
         </div>
@@ -200,8 +243,11 @@ $_SESSION['uloga'] = $_COOKIE['uloga'];
             ?>
         </div>
     </div>
-
+    
     <div class="footer">
+        <div class="dokumentacija-div">
+            <a href="html/dokumentacija.html" class="link-buttons">Dokumentacija</a>
+        </div>
         <div class="copyright-div">
             <p class="footer-ime">Borneo Culović &copy;2020</p>
             <a href="mailto:bculovic@foi.hr" class="footer-email">

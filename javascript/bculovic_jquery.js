@@ -3,7 +3,7 @@ $(document).ready(function () {
     console.log(naslov);
     if (naslov == "Korisnici") {
         $.ajax({
-            url: 'http://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/korisnici.php',
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/korisnici.php',
             type: 'GET',
             dataType: 'json',
             success: function (korisnici) {
@@ -62,7 +62,7 @@ $(document).ready(function () {
     }
     if (naslov == "Poštanski uredi") {
         $.ajax({
-            url: 'http://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/postanski_uredi.php',
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/postanski_uredi.php',
             type: 'GET',
             dataType: 'json',
             success: function (uredi) {
@@ -101,7 +101,7 @@ $(document).ready(function () {
     }
     if (naslov == "Izdani računi") {
         $.ajax({
-            url: 'http://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/izdaniRacuni.php',
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/izdaniRacuni.php',
             type: 'GET',
             dataType: 'json',
             success: function (rezultat) {
@@ -145,7 +145,7 @@ $(document).ready(function () {
     }
     if (naslov == "Upravljanje pošiljkama") {
         $.ajax({
-            url: 'http://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/upravljanjePošiljkama.php',
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/upravljanjePošiljkama.php',
             type: 'GET',
             dataType: 'json',
             success: function (rezultat) {
@@ -198,7 +198,7 @@ $(document).ready(function () {
     }
     if (naslov == "Popis država") {
         $.ajax({
-            url: 'http://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/drzave.php',
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/drzave.php',
             type: 'GET',
             dataType: 'json',
             success: function (rezultat) {

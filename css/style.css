@@ -77,6 +77,13 @@ header {
     color: goldenrod;
 }
 
+.ulogiraniKorisnik a {
+    color: #f45b69;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+
 .logo-ico {
     width: 2.4rem;
     height: auto;
@@ -197,7 +204,7 @@ body::-webkit-scrollbar {
     min-width: 100%;
     min-height: 100%;
     display: grid;
-    grid-template-columns: 10% 80% 10%;
+    grid-template-columns: 5% 90% 5%;
     grid-template-rows: 3rem 100%;
 }
 
@@ -407,6 +414,16 @@ body::-webkit-scrollbar {
     font-size: 0.8rem;
 }
 
+.label-zapamti {
+    margin-left: 2%;
+    font-size: 0.75rem;
+}
+
+.zapamtime {
+    margin-left: 0;
+
+}
+
 /*FOOTER*/
 
 .footer {
@@ -419,18 +436,29 @@ body::-webkit-scrollbar {
     height: 3.5rem;
     display: grid;
     grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 0.5rem 100% 0.5rem;
+}
+
+.dokumentacija-div {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-left: 2rem;
 }
 
 .copyright-div {
     grid-column-start: 2;
     grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
     display: grid;
     grid-template-rows: 25% 25% 25% 25%;
-    color: white;
     justify-self: center;
     align-self: center;
     font-family: sans-serif;
 }
+
 
 .footer-email, .footer-ime {
     font-size: 0.8rem;
@@ -439,8 +467,17 @@ body::-webkit-scrollbar {
 
 .footer-ime {
     color: #e4fde1;
+    grid-row-start: 1;
+    grid-row-end: 2;
 }
 
 .footer-email {
     color: #f45b69;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    opacity: 0.8;
+}
+
+.footer-email:hover {
+    opacity: 1;
 }
