@@ -200,10 +200,10 @@ if($_SESSION['ulogiraniKorisnik'] == null){
                     <div class="universal-form">
                         <form action="" novalidate name="prijava" method="get" id="prijava">
                             <label for="formusername" class="form-label">Korisničko ime</label><br>
-                            <input type="text" id="formusername" name="username" placeholder="" value="'; if($_COOKIE['username'] != null){
-                                echo $_COOKIE['username'];
+                            <input type="text" id="formusername" name="username"'; if($_COOKIE['username'] != null){
+                                echo 'placeholder="" value="'.$_COOKIE['username'].'"';
                             } else {
-                                echo "Korisničko ime";
+                                echo 'placeholder="Korisničko ime" value=""';
                             }
                             echo '"><br><br>
                             <label for="formpassword" class="form-label">Lozinka</label><br>

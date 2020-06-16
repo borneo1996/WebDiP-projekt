@@ -1,6 +1,5 @@
 $(document).ready(function () {
     naslov = $(document).find("title").text();
-    console.log(naslov);
     if (naslov == "Korisnici") {
         $.ajax({
             url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/korisnici.php',
@@ -217,6 +216,38 @@ $(document).ready(function () {
                     tablica.append(redak);
                 }
                 $("#tablicaDrzave").dataTable();
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+    }
+
+    if (naslov == "Registracija") {
+        console.log("Reg");
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/korisnici.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (korisnici) {
+                const users = $(korisnici);
+                var korisnik_ime = document.getElementById("formusername").text;
+                console.log(korisnik_ime);
+                var i = 0;
+                var count = korisnici.length;
+                var user_postoji = true;
+                for(i;i<count;i++){
+                    console.log("----");
+                    console.log(users[i].korisnicko_ime);
+                    if(users[i].korisnicko_ime == korisnik_ime){
+                        user_postoji = false;
+                    }
+                }
+                if(!user_postoji){
+                    document.cookie = "usernamePostoji=" + true +"; path=/";
+                } else {
+                    document.cookie = "usernamePostoji=" + false +"; path=/";
+                }
             },
             error : function() {
                 console.log("Error");

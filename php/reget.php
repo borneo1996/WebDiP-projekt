@@ -4,8 +4,6 @@ require 'session.php';
 
 $veza = new Baza();
 $veza->spojiDB();
-var_dump($_SESSION['ulogiraniKorisnik']);
-var_dump($_SESSION['uloga']);
 $user = $_SESSION['ulogiraniKorisnik'];
 
 $upit = "SELECT * FROM korisnik WHERE korisnicko_ime='{$user}';";

@@ -33,12 +33,12 @@ function noviKorisnik(){
     $_COOKIE['REGISTER uloga'] = "2";
 }
 
-function verificate(){
-    $ime = $_POST['formname'];
-    $prezime = $_POST['formpname'];
-    $username = $_POST['formusername'];
-    $email = $_POST['formmail'];
-    $lozinka = $_POST['formpassword'];
+
+    $ime = $_POST['ime'];
+    $prezime = $_POST['prezime'];
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $lozinka = $_POST['password'];
     $lozinkasha = sha1($lozinka);
     $kod = "";
     for($i=1;$i<=7; $i++){
@@ -47,21 +47,17 @@ function verificate(){
     $aktiviran = "0";
     $aktivan = "1";
     $uloga = "2";
-
+    $dobraLozinka = false;
     $captcha = $_POST['captcha'];
     $captcha_text = $_POST['captcha_text'];
-    if(strpos($email, '@') !== false){
-        echo 'Email adresa mora imati @.';
-        return;
-    }
-    if(strpos($email, '.hr') !== false){
-        echo 'Adresa mora završavati sa .hr';
-        return;
-    }
-    if($captcha_text == $captcha){
-        noviKorisnik();
-    }
-}
+
+    $veza = new Baza();
+    $veza->spojiDB();
+    $upit = "INSERT INTO korisnik (ime, prezime, korisnicko_ime, lozinka, lozinka_sha1, email, aktiviran, aktivacijski_kod, aktivan, blokiran_do, uloga_uloga_id) 
+    VALUES ($ime, $prezime, $username, $lozinka, $lozinkasha, $email, $aktiviran, $kod, $aktivan, null, $uloga);";
+    $upittest = "INSERT INTO korisnik (ime, prezime) VALUES ('test', 'testic')";
+    $veza->selectDB($upit);
+    $veza->zatvoriDB();
 
 
 ?>
@@ -220,7 +216,7 @@ function verificate(){
                     <label for="formname" class="form-label">Ime</label><br>
                     <input type="text" class="form-input" id="formname" name="ime" placeholder="Vaše ime"><br><br>
                     <label for="formpname" class="form-label">Prezime</label><br>
-                    <input type="text" class="form-input" id="formpname" name="prezimeime" placeholder="Vaše prezime"><br><br>
+                    <input type="text" class="form-input" id="formpname" name="prezime" placeholder="Vaše prezime"><br><br>
                     <label for="formusername" class="form-label">Korisničko ime</label><br>
                     <input type="text" class="form-input" id="formusername" name="username" placeholder="Korisničko ime"><br><br>
                     <label for="formmail" class="form-label">E-mail</label><br>
@@ -232,7 +228,7 @@ function verificate(){
                     <label for="captcha" class="form-label">Captcha</label><br>
                     <input type="text" class="form-input" id="captcha_text" name="captcha_text"><br>
                     <input type="text" class="form-input" id="captcha" name="captcha" placeholder="Captcha"><br><br><br>
-                    <input type="submit" id="registrirajBtn" value="Registriraj me">
+                    <input type="submit" id="registrirajBtn" name="registrirajBtn" value="Registriraj me">
                 </form>
             </div>
         </div>
