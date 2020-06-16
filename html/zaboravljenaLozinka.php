@@ -6,17 +6,25 @@ require '../php/https.php';
 
 $veza = new Baza();
 $veza->spojiDB();
-$kod = $_GET['activation_code'];
+$email = $_GET['email'];
 $user = $_SESSION['ulogiraniKorisnik'];
-$upit = "SELECT * FROM korisnik WHERE korisnicko_ime='{$user}';";
+$upit = "SELECT * FROM korisnik WHERE email='{$email}';";
 $rezultat = $veza->selectDB($upit);
 while($redak = mysqli_fetch_array($rezultat)){
     $id = $redak['korisnik_ID'];
-    $aktkod = $redak['aktivacijski_kod'];
-    if($aktkod == $kod){
-        $upit = "UPDATE korisnik SET aktiviran='1' WHERE korisnik_ID='{$id}';";
-        $veza->updateDB($upit, "../php/reget.php");
+    $znakovi = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $broj = strlen($znakovi);
+    $lozinka = "";
+    for($i=0;$i<10; $i++){
+        $lozinka .= $znakovi[rand(1,$broj)];
     }
+    $lozinkas = sha1($lozinka);
+    $subject = "Zaboravljena lozinka";
+    $tekst = "Ovo je nova lozinka: " . $lozinka;
+    $headers = "FROM: noreply@foi.hr";
+    mail($email, $subject, $tekst, $headers);
+    $updateLozinka = "UPDATE korisnik SET lozinka='{$lozinka}', lozinka_sha1='{$lozinkas}' WHERE korisnik_ID='{$id}';";
+    $veza->updateDB($updateLozinka, "prijava.php");
 }
 $veza->zatvoriDB();
 
@@ -26,7 +34,7 @@ $veza->zatvoriDB();
 <html lang="hr">
 
 <head>
-    <title>Prijava</title>
+    <title>Zaboravljena lozinka</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -55,15 +63,15 @@ $veza->zatvoriDB();
     </header>
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Aktivacija</strong></p>
+            <p><strong>Lozinka</strong></p>
         </div>
         <div class="prijava-div">
                     <div class="universal-form">
-                        <form action="aktivacija.php" novalidate name="aktivacija" method="get" id="aktivacija">
-                            <label for="activation_code" class="form-label">Aktivacijski kod</label><br>
-                            <input type="text" id="activation_code" name="activation_code" placeholder="Kod"><br><br>
-                            <p class="poruka">Aktivacijski kod je poslan na email.</p>
-                            <input id="activate" type="submit" name="activate" value="Aktiviraj">
+                        <form action="zaboravljenaLozinka.php" novalidate name="dobaviLozinku" method="get" id="dobaviLozinku">
+                            <label for="email" class="form-label">Email</label><br>
+                            <input type="text" id="email" name="email" placeholder="Email"><br><br>
+                            <p class="poruka">Unesite vašu email adresu.</p>
+                            <input id="zaboravljenaLozinka" type="submit" name="zaboravljenaLozinka" value="Pošalji">
                         </form>
                     </div>
                 </div>

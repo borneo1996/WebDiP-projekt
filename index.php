@@ -29,6 +29,7 @@ $user = $_SESSION['ulogiraniKorisnik'];
     <meta name="keywords" content="pošta, pošiljka, poštanski ured">
     <meta name="author" content="Borneo Culović">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/stylemobile.css">
     <script type="text/javascript" src="javascript/bculovic.js"></script>
 </head>
 

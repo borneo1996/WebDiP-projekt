@@ -41,7 +41,7 @@ function noviKorisnik(){
     $lozinka = $_POST['password'];
     $lozinkasha = sha1($lozinka);
     $kod = "";
-    for($i=1;$i<=7; $i++){
+    for($i=1;$i<7; $i++){
         $kod .= strval(rand(0,9));
     }
     $aktiviran = "0";
@@ -75,6 +75,7 @@ function noviKorisnik(){
     <meta name="keywords" content="pošta, pošiljka, poštanski ured">
     <meta name="author" content="Borneo Culović">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/stylemobile.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="../javascript/bculovic_jquery.js"></script>
 </head>
@@ -212,7 +213,7 @@ function noviKorisnik(){
         </div>
         <div class="registracija-div">
             <div class="universal-form">
-                <form action="../php/registracija.php" method="post">
+                <form action="../php/registracija.php" method="post" class="forma">
                     <label for="formname" class="form-label">Ime</label><br>
                     <input type="text" class="form-input" id="formname" name="ime" placeholder="Vaše ime"><br><br>
                     <label for="formpname" class="form-label">Prezime</label><br>
@@ -229,6 +230,7 @@ function noviKorisnik(){
                     <input type="text" class="form-input" id="captcha_text" name="captcha_text"><br>
                     <input type="text" class="form-input" id="captcha" name="captcha" placeholder="Captcha"><br><br><br>
                     <input type="submit" id="registrirajBtn" name="registrirajBtn" value="Registriraj me">
+                    <p class="porukica" id="porukica" style="color: red; font-size: 0.8rem;"></p>
                 </form>
             </div>
         </div>

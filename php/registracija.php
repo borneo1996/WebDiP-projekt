@@ -8,13 +8,10 @@ $unique_username = true;
 $ime = isset($_POST['ime']) ? $_POST['ime'] : '';
 $prezime = isset($_POST['prezime']) ? $_POST['prezime'] : '';
 $username = isset($_POST['username']) ? $_POST['username'] : '';
-$upit_provjere = "SELECT * FROM korisnik WHERE korisnicko_ime=$username";
-$rezultat = $veza->selectDB($upit_provjere);
-if(isset($_COOKIE['usernamePostoji'])){
-    if($_COOKIE['usernamePostoji']==true){
-        $unique_username = false;
-    }
-}
+$upit_provjere = "SELECT * FROM korisnik WHERE korisnicko_ime='$username'";
+
+
+
 $email = isset($_POST['email']) ? $_POST['email'] : '';
 $lozinka = isset($_POST['password']) ? $_POST['password'] : '';
 $lozinkasha = isset($_POST['password']) ? sha1($_POST['password']) : '';
@@ -31,6 +28,12 @@ VALUES ('$ime', '$prezime', '$username', '$lozinka', '$lozinkasha', '$email', '$
 $upittest = "INSERT INTO korisnik (ime, prezime) VALUES ('test', 'testic')";
 if($ime && $prezime && $email && $lozinka && $unique_username){
     $veza->updateDB($upit, '');
+    $subject = "Pošta - Aktivacijski kod";
+    $tekst = "Ovo je vaš aktivacijski kod: " . $kod;
+    $headers = "FROM: bculovic@foi.hr";
+    mail($email, $subject, $tekst, $headers);
+    echo 'Registracija uspješna! Provjerite email radi aktivacijskog koda!';
+    echo '<br><br><button><a href="../index.php">Prijava</a></button>';
 } else {
     if(!$unique_username){
         echo 'Korisnik sa tim korisničkim imenom već postoji!';

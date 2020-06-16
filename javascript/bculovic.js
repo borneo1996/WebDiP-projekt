@@ -1,6 +1,16 @@
 
 var znakovi = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var brojZnakova = znakovi.length;
+var uvjetiKoristenja = getCookie("prihvaceniUvjeti");
+if(uvjetiKoristenja == ""){
+    if(confirm("Prihvatite uvjete korištenja i bilježenja kolačića.")){
+        console.log("Prihvaceno");
+        var age = 2*60*60*24;
+        var maxage = "max-age="+age;
+        var kolac = "prihvaceniUvjeti";
+        document.cookie = kolac+"=true;"+maxage+";path=/";
+    }
+}
 onLoad();
 var imeProvjera = false;
 var prezimeProvjera = false;
@@ -24,7 +34,25 @@ function onLoad() {
         document.getElementById("captcha").addEventListener("change", provjeraCaptcha);
         setCaptcha();
     }
+
 }
+
+function getCookie(cookieName) {
+    var name = cookieName + "=";
+    var cookiePolje = document.cookie.split(';');
+    for(var i = 0; i < cookiePolje.length; i++) {
+      var cook = cookiePolje[i];
+      while (cook.charAt(0) == ' ') {
+        cook = cook.substring(1);
+      }
+      if (cook.indexOf(name) == 0) {
+        return cook.substring(name.length, cook.length);
+      }
+    }
+    return "";
+  }
+
+
 
 function provjeraImena() {
     var unos = document.getElementById("formname").value;

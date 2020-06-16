@@ -52,6 +52,7 @@ if($_SESSION['ulogiraniKorisnik'] == null){
     if($auth){
         setcookie("auth", $korisnickoIme, false, '/', false);
         setcookie("uloga", $uloga, false, '/', false);
+        session_start();
         if(!$aktiviran){
             header("Refresh:0; url=aktivacija.php");
         } else {
@@ -80,6 +81,7 @@ if($_SESSION['ulogiraniKorisnik'] == null){
     <meta name="keywords" content="pošta, pošiljka, poštanski ured">
     <meta name="author" content="Borneo Culović">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/stylemobile.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="../javascript/bculovic_jquery.js"></script>
     <script type="text/javascript" src="../javascript/bculovic.js"></script>
@@ -210,8 +212,8 @@ if($_SESSION['ulogiraniKorisnik'] == null){
                             <input type="password" id="formpassword" name="password" placeholder="Lozinka"><br><br>
                             <input type="checkbox" id="zapamtime" name="zapamtime" class="zapamtime">
                             <label for="zapamtime" class="label-zapamti">Zapamti me</label><br>
-                            <a href="registracija.php" class="no-account-link"><p>Nemaš račun? Klikni ovdje.</p></a>
-                            <a href="dohvatLozinke.php" class="no-account-link" style="color:#028090;"><p>Zaboravljena lozinka?</p></a>
+                            <a href="registracija.php" class="no-account-link">Nemaš račun? Klikni ovdje.</a><br>
+                            <a href="zaboravljenaLozinka.php" class="no-account-link" style="color:#028090;">Zaboravljena lozinka?</a><br>
                             <input id="submit" type="submit" name="submit" value="Prijava">
                         </form>
                     </div>

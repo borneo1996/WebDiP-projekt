@@ -1,11 +1,11 @@
-@media only screen and (min-width: 1024px){
+@media only screen and (max-width: 768px){
     html{
-        font-size: 20px;
+        font-size: 12px;
         font-family: sans-serif;
     }
 
     header {
-        height: 3rem;
+        height: 4rem;
         width: 100%;
         background-color: #456990;
         margin: 0;
@@ -13,11 +13,11 @@
     }
 
     .header-div{
-        height: 3rem;
+        height: 4rem;
         width: 100%;
         display: grid;
-        grid-template-columns: 0.4rem 2.6rem 0.4rem 75% 13% 12% 0.4rem;
-        grid-template-rows: 0.3rem auto 0.3rem;
+        grid-template-columns: 0.4rem 2.6rem 0.4rem 65% 17% 18% 0.4rem;
+        grid-template-rows: 0.5rem auto 0.5rem;
         justify-content: left;
     }
 
@@ -32,8 +32,8 @@
     }
 
     .logo-div {
-        margin-left: 0.3rem;
-        margin-top: 0.3rem;
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
         position: fixed;
     }
 
@@ -41,7 +41,7 @@
         float: left;
         font-size: 0.8rem;
         color: #e4fde1;
-        text-align: center;
+        text-align: left;
         padding: 0.7rem 0.8rem;
         text-decoration: none;
     }
@@ -64,7 +64,7 @@
         grid-row-end: 3;
         grid-column-start: 5;
         grid-column-end: 6;
-        font-size: 0.7rem;
+        font-size: 0.85rem;
         color: gold;
     }
 
@@ -108,7 +108,7 @@
 
     .link-buttons {
         float: left;
-        font-size: 0.8rem;
+        font-size: 1rem;
         color: #e4fde1;
         text-align: center;
         padding: 0.7rem 0.8rem;
@@ -137,7 +137,7 @@
     }
 
     .hover-links .dropdownBtn {
-        font-size: 0.8rem;  
+        font-size: 1rem;  
         border: none;
         outline: none;
         color: #e4fde1;
@@ -205,8 +205,8 @@
         min-width: 100%;
         min-height: 100%;
         display: grid;
-        grid-template-columns: 6% 88% 6%;
-        grid-template-rows: 3rem 100%;
+        grid-template-columns: 0 100% 0;
+        grid-template-rows: 4rem 100%;
     }
 
     .page-title {
@@ -216,7 +216,7 @@
         grid-row-end: 2;
         background-color: #456990;
         color: #e4fde1;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     .page-title p {
@@ -229,7 +229,7 @@
         background-color: #e4fde1;
         border-top: none;
         position: relative;
-        height: fit-content;
+        height: 100%;
         width: 100%;
         padding: 2rem;
         grid-column-start: 2;
@@ -242,19 +242,17 @@
         grid-row-start: 2;
         grid-row-end: 3;
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
         justify-content: center;
-        vertical-align: middle;
     }
 
     .mojaslika {
         background-color: white;
         width: auto;
-        height: 18rem;
-        grid-column-start: 1;
-        grid-column-end: 2;
+        height: 25rem;
+        grid-row-start: 1;
+        grid-row-end: 2;
         transition-duration: 1s;
-        margin: auto;
     }
 
     .mojaslika:hover {
@@ -263,8 +261,10 @@
     }
 
     .autor-info {
-        grid-column-start: 2;
-        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        text-align: center;
+        font-size: 1.3rem;
     }
 
     .info-title {
@@ -288,7 +288,7 @@
 
     .sadrzaj-div-1, .sadrzaj-div-2, .sadrzaj-div-3, .sadrzaj-div-4, .sadrzaj-div-5, .sadrzaj-div-6, .sadrzaj-div-7 {
         color: #456990;
-        font-size: 0.8rem;
+        font-size: 1.2rem;
         display: grid;
         grid-template-columns: 20% 50% 50% 20%;
         grid-column-start: 2;
@@ -351,7 +351,7 @@
 
     .pocetna-sadrzaj-img {
         height: auto;
-        width: 3rem;
+        width: 3.4rem;
     }
 
 
@@ -371,7 +371,7 @@
         margin-left: auto;
         margin-right: auto;
         box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.2), 0 0.3rem 1rem 0 rgba(0, 0, 0, 0.19);
-        width: 40%;
+        width: 50%;
         padding: 5%;
         color: #456990;
         text-align: center;
@@ -383,29 +383,33 @@
 
     .no-account-link {
         color: #f45b69;
-        font-size: 0.7rem;
+        font-size: 1.1rem;
     }
 
     .form-label, .form-input {
         justify-self: center;
+        margin: 3%;
     }
 
     .tablica {
-        grid-column-start: 2;
+        grid-column-start: 1;
         grid-column-end: 3;
         width: 100%;
         font-family: sans-serif;
-        font-size: 0.7rem;
+        font-size: 0.6rem;
+        padding: 0;
     }
 
     .tablica td, th {
         border: 0.05rem solid #456990;
         color: #456990;
         background-color: white;
+        padding: 0;
     }
 
     .tablica th {
         background-color: #cbffc4;
+        font-size: 0.8rem;
     }
 
     .tablica td:hover, th:hover {
@@ -414,33 +418,18 @@
 
     .poruka {
         color: #f45b69;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .label-zapamti {
-        margin-left: 2%;
-        font-size: 0.75rem;
+        margin: 2%;
+        font-size: 1rem;
     }
 
     .zapamtime {
         margin-left: 0;
-
+        margin: 2%;
     }
-
-    /*UPRAVLJANJE KORISNICIMA*/
-
-    .upravljanjeDiv {
-        grid-column-start: 2;
-        grid-column-end: 3;
-        margin-bottom: 10rem;
-        justify-content: center;
-        background-color: #e4fde1;
-        width: 100%;
-        justify-content: center;
-    }
-
-
-
 
     /*FOOTER*/
 
@@ -451,10 +440,10 @@
         width: 100%;
         margin-left: auto;
         margin-right: auto;
-        height: 3.5rem;
+        height: 4.5rem;
         display: grid;
         grid-template-columns: 30% 40% 30%;
-        grid-template-rows: 0.5rem 100% 0.5rem;
+        grid-template-rows: 0.9rem 100% 0.9rem;
     }
 
     .dokumentacija-div {
@@ -479,7 +468,7 @@
 
 
     .footer-email, .footer-ime {
-        font-size: 0.8rem;
+        font-size: 1rem;
         justify-self: center;
     }
 

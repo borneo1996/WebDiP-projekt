@@ -1,5 +1,7 @@
 $(document).ready(function () {
     naslov = $(document).find("title").text();
+    console.log(naslov);
+    
     if (naslov == "Korisnici") {
         $.ajax({
             url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/korisnici.php',
@@ -224,30 +226,73 @@ $(document).ready(function () {
     }
 
     if (naslov == "Registracija") {
-        console.log("Reg");
         $.ajax({
             url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/korisnici.php',
             type: 'GET',
             dataType: 'json',
             success: function (korisnici) {
                 const users = $(korisnici);
-                var korisnik_ime = document.getElementById("formusername").text;
-                console.log(korisnik_ime);
+                var korisnik_ime;
                 var i = 0;
                 var count = korisnici.length;
-                var user_postoji = true;
+                var user_postoji = false;
+                var poljeUsera = [];
                 for(i;i<count;i++){
-                    console.log("----");
-                    console.log(users[i].korisnicko_ime);
-                    if(users[i].korisnicko_ime == korisnik_ime){
-                        user_postoji = false;
+                    poljeUsera[i] = users[i].korisnicko_ime;
+                }
+                $("#formusername").on('input', function(){
+                    korisnik_ime = document.getElementById("formusername").value;
+                    for(var i = 0; i<poljeUsera.length;i++){
+                        if(poljeUsera[i] == korisnik_ime){
+                            user_postoji = true;
+                            $("#registrirajBtn").prop("disabled",true);
+                            $('#porukica').html('Korisničko ime je zauzeto!');
+                            $('#captcha').val('');
+                            $('#captcha').prop("disabled", true);
+                        } else {
+                            $('#captcha').prop("disabled", false);
+                            $('#porukica').html('');
+                        }
                     }
+                })
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+    }
+
+    if (naslov == "Korisnik") {
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/korisnici.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (korisnici) {
+                const users = $(korisnici);
+                console.log("kinda works");
+                var korisnik_ime;
+                var i = 0;
+                var count = korisnici.length;
+                var user_postoji = false;
+                var poljeUsera = [];
+                for(i;i<count;i++){
+                    poljeUsera[i] = users[i].korisnicko_ime;
                 }
-                if(!user_postoji){
-                    document.cookie = "usernamePostoji=" + true +"; path=/";
-                } else {
-                    document.cookie = "usernamePostoji=" + false +"; path=/";
-                }
+                $("#formusername").on('input', function(){
+                    korisnik_ime = document.getElementById("formusername").value;
+                    for(var i = 0; i<poljeUsera.length;i++){
+                        if(poljeUsera[i] == korisnik_ime){
+                            user_postoji = true;
+                            $("#registrirajBtn").prop("disabled",true);
+                            $('#porukica').html('Korisničko ime je zauzeto!');
+                            $('#captcha').val('');
+                            $('#captcha').prop("disabled", true);
+                        } else {
+                            $('#captcha').prop("disabled", false);
+                            $('#porukica').html('');
+                        }
+                    }
+                })
             },
             error : function() {
                 console.log("Error");
