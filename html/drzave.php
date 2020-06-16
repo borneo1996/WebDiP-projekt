@@ -22,6 +22,7 @@ if($_SESSION['uloga']<=3){
     <meta name="description" content="Internetska stranica pošte.">
     <meta name="keywords" content="pošta, pošiljka, poštanski ured">
     <meta name="author" content="Borneo Culović">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

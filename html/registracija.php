@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+require '../php/baza.class.php';
 require_once '../php/session.php';
 if(!isset($_COOKIE['uloga'])){
     $_COOKIE['uloga'] = 1;
@@ -14,6 +15,55 @@ if(isset($_SESSION['aktiviran'])){
     }
 }
 $user = $_SESSION['ulogiraniKorisnik'];
+
+function noviKorisnik(){
+    setcookie("REGISTER_ime", $_POST['formname'], false, '/', false);
+    $_COOKIE['REGISTER_prezime'] = $_POST['formpname'];
+    $_COOKIE['REGISTER_username'] = $_POST['formusername'];
+    $_COOKIE['REGISTER_email'] = $_POST['formmail'];
+    $_COOKIE['REGISTER_lozinka'] = $_POST['formpassword'];
+    $_COOKIE['REGISTER_lozinkasha'] = sha1($_SESSION['REGISTER_lozinka']);
+    $kod = "";
+    for($i=1;$i<=7; $i++){
+        $kod .= strval(rand(0,9));
+    }
+    $_COOKIE['REGISTER aktivacijski_kod'] = $kod;
+    $_COOKIE['REGISTER aktiviran'] = "0";
+    $_COOKIE['REGISTER aktivan'] = "1";
+    $_COOKIE['REGISTER uloga'] = "2";
+}
+
+function verificate(){
+    $ime = $_POST['formname'];
+    $prezime = $_POST['formpname'];
+    $username = $_POST['formusername'];
+    $email = $_POST['formmail'];
+    $lozinka = $_POST['formpassword'];
+    $lozinkasha = sha1($lozinka);
+    $kod = "";
+    for($i=1;$i<=7; $i++){
+        $kod .= strval(rand(0,9));
+    }
+    $aktiviran = "0";
+    $aktivan = "1";
+    $uloga = "2";
+
+    $captcha = $_POST['captcha'];
+    $captcha_text = $_POST['captcha_text'];
+    if(strpos($email, '@') !== false){
+        echo 'Email adresa mora imati @.';
+        return;
+    }
+    if(strpos($email, '.hr') !== false){
+        echo 'Adresa mora završavati sa .hr';
+        return;
+    }
+    if($captcha_text == $captcha){
+        noviKorisnik();
+    }
+}
+
+
 ?>
 
 
@@ -166,7 +216,7 @@ $user = $_SESSION['ulogiraniKorisnik'];
         </div>
         <div class="registracija-div">
             <div class="universal-form">
-                <form action="">
+                <form action="../php/registracija.php" method="post">
                     <label for="formname" class="form-label">Ime</label><br>
                     <input type="text" class="form-input" id="formname" name="ime" placeholder="Vaše ime"><br><br>
                     <label for="formpname" class="form-label">Prezime</label><br>
