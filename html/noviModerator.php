@@ -1,9 +1,7 @@
 <?php
 require '../php/baza.class.php';
 
-if(isset($_POST['konfigurirajID'])){
-    $id = $_POST['identifikator'];
-}
+
 if(!isset($_SESSION['uloga'])){
     $_SESSION['uloga'] = $_COOKIE['uloga'];
 }
@@ -11,36 +9,22 @@ if(!isset($_SESSION['ulogiraniKorisnik'])){
     $_SESSION['ulogiraniKorisnik'] = $_COOKIE['username'];
 }
 
-if(isset($_POST['update'])){
-    $veza = new Baza();
-    $veza->spojiDB();
+
+if(isset($_POST['dodajga'])){
     $ime = $_POST['ime'];
     $prezime = $_POST['prezime'];
+    $username = $_POST['username'];
     $email = $_POST['email'];
-    $korisnickoime = $_POST['username'];
     $lozinka = $_POST['adminlozinka'];
-    $lozinkasha = sha1($lozinka);
-    $aktiviran = $_POST['adminaktiviran'];
-    $aktivkod = $_POST['adminkod'];
-    $aktivan = $_POST['adminaktivan'];
-    $blokirando = $_POST['adminblokirando'];
-    $identifikat= $_POST['identifikacija'];
-    $role = $_POST['adminuloga'];
-    $upit = "UPDATE korisnik SET ime='{$ime}', prezime='{$prezime}', korisnicko_ime='{$korisnickoime}', lozinka='{$lozinka}', lozinka_sha1='{$lozinkasha}', email='{$email}', aktiviran='{$aktiviran}', aktivacijski_kod='{$aktivkod}', aktivan='{$aktivan}', blokiran_do='{$blokirando}', uloga_uloga_id='{$role}' WHERE korisnik_ID='{$identifikat}';";  
-    $veza->updateDB($upit, "korisnici.php");
-    $veza->zatvoriDB();
+    $hashloz = sha1($lozinka);
 
-}
-if(isset($_POST['obrisi'])){
     $veza = new Baza();
     $veza->spojiDB();
-    $identifikat= $_POST['identifikacija'];
-    $upit = "DELETE FROM korisnik WHERE korisnik_ID='{$identifikat}'";
+    $upit = "INSERT INTO korisnik (ime, prezime, korisnicko_ime, lozinka, lozinka_sha1, email, aktiviran, aktivacijski_kod, aktivan, uloga_uloga_id) 
+    VALUES ('$ime', '$prezime', '$username', '$lozinka', '$hashloz', '$email', '1', 'moderator', '1', '3');";
     $veza->updateDB($upit, "korisnici.php");
     $veza->zatvoriDB();
-
 }
-
 
 ?>
 
@@ -48,7 +32,7 @@ if(isset($_POST['obrisi'])){
 <html lang="hr">
 
 <head>
-    <title>Korisnik</title>
+    <title>Novi moderator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -99,14 +83,12 @@ if(isset($_POST['obrisi'])){
 
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Korisnik</strong></p>
+            <p><strong>Novi moderator</strong></p>
         </div>
         <div class="registracija-div">
             <div class="universal-form">
                 <form action="" method="post" class="forma">
-                    <legend>KORISNIK</legend><br><br>
-                    <label for="identifikacija" class="form-label">ID</label>
-                    <input type="text" class="form-input" id="identifikacija" name="identifikacija" value="<?php echo $id;?>"><br><br>
+                    <legend>Moderator</legend><br><br>
                     <label for="adminime" class="form-label">Ime</label>
                     <input type="text" class="form-input" id="adminime" name="ime" placeholder="Vaše ime"><br><br>
                     <label for="adminprezime" class="form-label">Prezime</label>
@@ -117,20 +99,7 @@ if(isset($_POST['obrisi'])){
                     <input type="email" class="form-input" id="adminmail" name="email" placeholder="Vaš e-mail"><br><br>
                     <label for="adminlozinka" class="form-label">Lozinka</label>
                     <input type="text" class="form-input" id="adminlozinka" name="adminlozinka" placeholder="Lozinka"><br><br>
-                    <label for="adminlozinkasha" class="form-label">Lozinka (hash)</label>
-                    <input type="text" class="form-input" id="adminlozinkasha" name="adminlozinkasha" placeholder="Lozinka"><br><br>
-                    <label for="adminaktiviran" class="form-label">Aktiviran</label>
-                    <input type="text" class="form-input" id="adminaktiviran" name="adminaktiviran" placeholder="Aktiviran"><br><br>
-                    <label for="adminkod" class="form-label">Aktivacijski kod</label>
-                    <input type="text" class="form-input" id="adminkod" name="adminkod" placeholder="Aktivacijski kod"><br><br>
-                    <label for="adminaktivan" class="form-label">Aktivan</label>
-                    <input type="text" class="form-input" id="adminaktivan" name="adminaktivan" placeholder="Aktivan"><br><br>
-                    <label for="adminblokirando" class="form-label">Blokiran do</label>
-                    <input type="datetime" class="form-input" id="adminblokirando" name="adminblokirando" placeholder="Lozinka"><br><br>
-                    <label for="adminuloga" class="form-label">Uloga</label>
-                    <input type="text" class="form-input" id="adminuloga" name="adminuloga" placeholder="Uloga"><br><br><br>
-                    <input type="submit" id="update" name="update" value="Izmjeni">
-                    <input type="submit" id="obrisi" name="obrisi" value="Obriši">
+                    <input type="submit" id="dodajga" name="dodajga" value="Dodaj">
                 </form>
             </div>
         </div>

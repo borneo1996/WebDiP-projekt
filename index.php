@@ -14,6 +14,9 @@ if(isset($_SESSION['aktiviran'])){
         $akt = true;
     }
 }
+if($_SESSION['uloga'] == 4){
+    header("Refresh: 0; url=html/administrator.php");
+}
 $user = $_SESSION['ulogiraniKorisnik'];
 ?>
 

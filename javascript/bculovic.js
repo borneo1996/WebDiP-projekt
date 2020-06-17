@@ -33,7 +33,15 @@ function onLoad() {
         document.getElementById("formpassword2").addEventListener("change", provjeraPassworda);
         document.getElementById("captcha").addEventListener("change", provjeraCaptcha);
         setCaptcha();
+    } else if (document.title === "Početna - ADMIN") {
+        
     }
+
+}
+
+function brisiKolacicUvjeta(){
+    document.cookie = "prihvaceniUvjeti= ; expires = Thu, 01 Jan 2000 00:00:00 GMT; path=/";
+    console.log("Obrisan");
 
 }
 

@@ -164,9 +164,6 @@ if($_SESSION['uloga']<2){
         </div>
 
     <div class="footer">
-        <div class="dokumentacija-div">
-            <a href="dokumentacija.html" class="link-buttons">Dokumentacija</a>
-        </div>
         <div class="copyright-div">
             <p class="footer-ime">Borneo Culović &copy;2020</p>
             <a href="mailto:bculovic@foi.hr" class="footer-email"><p>bculovic@foi.hr</p></a>

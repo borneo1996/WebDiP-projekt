@@ -163,25 +163,19 @@ if($_SESSION['uloga']<=2){
             </table>
     
         </div>
-        <?php
-            if($_SESSION['uloga']>=3){
-                
-
-            }
-        
-        ?>
         <div class="upravljanjeDiv">
             <form method="POST" action="dohvaceniKorisnik.php">
                 <label for="identifikator" class="form-label">Unesi ID korisnika</label>
                 <input type="text" name="identifikator" id="identifikator" placeholder="ID korisnika"></input><br>
-                <input type="submit" name="konfigurirajID" id="konfigurirajID" value="Izmjeni">
+                <input type="submit" name="konfigurirajID" id="konfigurirajID" value="Izmjeni"><br><br>
             </form>
+            <form method="POST" action="noviModerator.php">
+                <input type="submit" name="dodajModeratora" id="dodajModeratora" value="Dodaj novog moderatora">
+            </form>
+            <br><br><br><br><br>
         </div>
     </div>        
     <div class="footer">
-        <div class="dokumentacija-div">
-            <a href="dokumentacija.html" class="link-buttons">Dokumentacija</a>
-        </div>
         <div class="copyright-div">
             <p class="footer-ime">Borneo Culović &copy;2020</p>
             <a href="mailto:bculovic@foi.hr" class="footer-email"><p>bculovic@foi.hr</p></a>

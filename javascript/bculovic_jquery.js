@@ -20,7 +20,7 @@ $(document).ready(function () {
                     var lozinka = users[i].lozinka;
                     var lozinkaSha1 = users[i].lozinka_sha1;
                     var email = users[i].email;
-                    var status = users[i].status;
+                    var status = users[i].aktivan;
                     if(status == 1){
                         status = "Aktivan";
                     } else {
@@ -269,30 +269,26 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (korisnici) {
                 const users = $(korisnici);
-                console.log("kinda works");
-                var korisnik_ime;
-                var i = 0;
+                var identifikacija = document.getElementById("identifikacija").value;
                 var count = korisnici.length;
-                var user_postoji = false;
-                var poljeUsera = [];
+                var i = 0;
                 for(i;i<count;i++){
-                    poljeUsera[i] = users[i].korisnicko_ime;
-                }
-                $("#formusername").on('input', function(){
-                    korisnik_ime = document.getElementById("formusername").value;
-                    for(var i = 0; i<poljeUsera.length;i++){
-                        if(poljeUsera[i] == korisnik_ime){
-                            user_postoji = true;
-                            $("#registrirajBtn").prop("disabled",true);
-                            $('#porukica').html('Korisničko ime je zauzeto!');
-                            $('#captcha').val('');
-                            $('#captcha').prop("disabled", true);
-                        } else {
-                            $('#captcha').prop("disabled", false);
-                            $('#porukica').html('');
-                        }
+                    if(identifikacija == users[i].korisnik_ID){
+                        $('#adminime').val(users[i].ime);
+                        $('#adminprezime').val(users[i].prezime);
+                        $('#adminusername').val(users[i].korisnicko_ime);
+                        $('#adminmail').val(users[i].email);
+                        $('#adminlozinka').val(users[i].lozinka);
+                        $('#adminlozinkasha').val(users[i].lozinka_sha1);
+                        $('#adminaktiviran').val(users[i].aktiviran);
+                        $('#adminkod').val(users[i].aktivacijski_kod);
+                        $('#adminaktivan').val(users[i].aktivan);
+                        $('#adminblokirando').val(users[i].blokiran_do);
+                        $('#adminuloga').val(users[i].uloga_uloga_id);
+                        $("#ident").prop("disabled",true);
                     }
-                })
+                }
+
             },
             error : function() {
                 console.log("Error");
