@@ -1,7 +1,17 @@
 <?php
 error_reporting(0);
 require_once '../php/session.php';
+require '../php/baza.class.php';
 
+if(isset($_POST['novadrzava'])){
+    $drzava = $_POST['nazivdrzave'];
+    $veza = new Baza();
+    $veza->spojiDB();
+
+    $upit = "INSERT INTO država (naziv_drzave) VALUES ('{$drzava}')";
+    $veza->updateDB($upit, "drzave.php");
+    $veza->zatvoriDB();
+}
 
 ?>
 
@@ -57,20 +67,21 @@ require_once '../php/session.php';
             <p><strong>Administrator</strong></p>
         </div>
         <div class="pocetna-sadrzaj">
-            <form method="post" action="../php/dodajDrzavu.php">
+        <button id="killCookie" onclick=brisiKolacicUvjeta() style="width: 3rem; height:2rem;">Kolacic</button><br>
+            <form method="post" action="administrator.php">
+                <input type="text" id="nazivdrzave" name="nazivdrzave" placeholder="Naziv države"><br>
                 <input type="submit" id="novadrzava" name="novadrzava" value="Dodaj novu državu">
             </form><br><br>
-            <form method="post" action="../php/dodajUred.php">
-                <br><br><input type="submit" id="noviured" name="noviured" value="Dodaj novi poštanski ured">
+            <form method="post" action="dodajUred.php">
+                <input type="submit" id="noviured" name="noviured" value="Dodaj novi poštanski ured">
             </form><br><br>
-            <button id="killCookie" onclick=brisiKolacicUvjeta() style="width: 3rem; height:2rem;">Kolacic</button>
         </div>
         
     </div>
     
     <div class="footer">
         <div class="dokumentacija-div">
-            <a href="html/dokumentacija.html" class="link-buttons">Dokumentacija</a>
+            <a href="dokumentacija.html" class="link-buttons">Dokumentacija</a>
         </div>
         <div class="copyright-div">
             <p class="footer-ime">Borneo Culović &copy;2020</p>

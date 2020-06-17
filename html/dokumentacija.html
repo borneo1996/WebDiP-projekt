@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <title>Autor</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="date" content="03-06-2020">
+    <meta name="description" content="Internetska stranica pošte.">
+    <meta name="keywords" content="pošta, pošiljka, poštanski ured">
+    <meta name="author" content="Borneo Culović">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/stylemobile.css">
+    <script type="text/javascript" src="../javascript/bculovic.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-div">
+            <div class="logo-div">
+                <a href="../index.php" class="logo-ico">
+                    <img src="../images/posta_logo.png" class="icon" alt="posta_logo" title="Početna">
+                </a>
+            </div>
+            <div class="navigation-bar">
+                <a href="../index.php" class="link-buttons">Početna</a>
+                <a href="prijava.php" class="link-buttons">Prijava</a>
+                <a href="registracija.php" class="link-buttons">Registracija</a>
+                <a href="#" class="link-buttons">Autor</a>
+                <div class="hover-links">
+                    <button class="dropdownBtn">Popis &darr;</button>
+                    <div class="dropdown-linkovi">
+                        <a href="upravljanje_posiljkama.php" class="link-buttons">Upravljanje pošiljkama</a>
+                        <a href="postanski-uredi.php" class="link-buttons" >Poštanski uredi</a>
+                        <a href="izdani-racuni.php" class="link-buttons">Izdani računi</a>
+                        <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
+                        <a href="drzave.php" class="link-buttons">Države</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main-content">
+        <div class="page-title">
+            <p><strong>Dokumentacija</strong></p>
+        </div>
+        <div class="dokumentacija_div">
+            <h2>Opis projektnog zadatka</h2>
+            <p>Sustav za upravljanje postupka razmjene pošiljke između korisnika poštanskih ureda<br>koji su raspodjeljeni po ulogama.</p>
+            <br><br>
+            <h2>Opis projektnog rješenja</h2>
+            <p>Projekt nedovršeno napravljen u Visual Studiu uz pomoć PHP, AJAX, jQuery, javascript, HTML i CSS programskih jezika.</p>
+            <br><br>
+            <h2>ERA model</h2>
+            <img src="../images/ERA-model.png" alt="era" target="_blank" title="ERA model"><br><br>
+            <h2>Navigacijski dijagram</h2>
+            <img src="../images/navigacijski_dijagram.png" alt="nav" target="_blank" title="Navigacijski dijagram"><br><br>
+            <h2>Datoteke i skripte</h2>
+            <p><strong>index.php</strong> - početna stranica za sve korisnike osim administratora.</p><br>
+            <h3>/html</h3>
+            <p><strong>administrator.php</strong> - početna stranica za administratora.</p><br>
+            <p><strong>prijava.php</strong> - stranica na kojoj se korisnici prijavljuju.</p><br>
+            <p><strong>registracija.php</strong> - stranica na kojoj neregistrirani korisnik postaje registrirani.</p><br>
+            <p><strong>autor.html</strong> - osnovne informacije o autoru.</p><br>
+            <p><strong>upravljanje_posiljkama.php</strong> - stranica na kojoj se može vidjeti tablica pošiljki.</p><br>
+            <p><strong>postanski_uredi.php</strong> - stranica na kojoj se nalazi tablica poštanskih ureda.</p><br>
+            <p><strong>izdani-racuni.php</strong> - stranica na kojoj se nalazi tablica izdanih računa.</p><br>
+            <p><strong>korisnici.php</strong> - stranica na kojoj se nalazi tablica korisnika i na kojoj administrator može blokirati, brisati, dodavati i izmjenjivati korisnike.</p><br>
+            <p><strong>drzave.php</strong> - stranica sa tablicom država.</p><br>
+            <p><strong>noviModerator.php</strong> - stranica na kojoj administrator dodaje novog moderatora.</p><br>
+            <p><strong>zaboravljenaLozinka.php</strong> - stranica na kojoj korisnik zatraži resetiranje lozinke i slanje iste na mail.</p><br>
+            <p><strong>aktivacija.php</strong> - stranica na kojoj registrirani korisnik aktivira svoj račun.</p><br>
+            <br>
+            <h3>/css</h3>
+            <p><strong>style.css</strong> - CSS file za ekrane širine veće od 768px.</p><br>
+            <p><strong>stylemobile.css</strong> - CSS file za mobilne uređaje.</p><br>
+            <br>
+            <h3>/images</h3>
+            <p><strong>Slike</strong> - korištene u projektu.</p><br>
+            <br>
+            <h3>/javascript</h3>
+            <p><strong>bculovic_jquery.js</strong> - jQuery, AJAX i javascript file.</p><br>
+            <p><strong>bculovic.js</strong> - javascript file.</p><br>
+            <br>
+            <h3>/php</h3>
+            <p><strong>baza.class.php</strong> - skripta za spajanje sa bazom podataka.</p><br>
+            <p><strong>drzave.php</strong> - skripta za dohvaćanje država iz baze podataka.</p><br>
+            <p><strong>https.php</strong> - skripta za stavljanje stranica na sigurnu vezu.</p><br>
+            <p><strong>korisnici.php</strong> - skripta za dohvaćanje korisnika iz baze podataka.</p><br>
+            <p><strong>odjava.php</strong> - skripta za odjavu korisnika.</p><br>
+            <p><strong>postanski_uredi.php</strong> - skripta za dohvat poštanskih ureda.</p><br>
+            <p><strong>registracija.php</strong> - skripta za registraciju korisnika.</p><br>
+            <p><strong>session.php</strong> - skripta koja započinje i održava sesiju.</p><br>
+            <p><strong>upravljanjePošiljkama.php</strong> - skripta za dohvat pošiljki iz baze podataka.</p><br><br>
+            <h2>Alati i programski jezici</h2><br>
+            <h3>Programski jezici</h3><br>
+            <p><strong>HTML</strong> - standardni jezik koji govori stranici što će prikazivati.</p><br>
+            <p><strong>CSS</strong> - opisni jezik koji uređuje stranicu..</p><br>
+            <p><strong>Javascript</strong> - programski jezik koji iz statične stranice stvara dinamičnu stranicu.</p><br>
+            <p><strong>jQuery</strong> - javascriptova biblioteka za lakše rukovanje Ajaxom.</p><br>
+            <p><strong>AJAX</strong> - programski jezik za stvaranje asinkronih stranica koristeći javascript i xml.</p><br>
+            <p><strong>PHP</strong> - programski jezik za rad na strani poslužitelja.</p><br><br>
+            <h3>Alati</h3>
+            <p><strong>Visual Studio Code</strong> - korišten za pisanje svog koda.</p><br>
+            <p><strong>FileZilla</strong> - alat korišten za slanje datoteka na server.</p><br>
+            <p><strong>Chrome</strong> - web preglednik korišten za testiranje.</p><br>
+            <p><strong>Mozilla Firefox</strong> - web preglednik korišten za testiranje.</p><br>
+        </div>
+        
+    </div>
+
+    <div class="footer">
+        <div class="dokumentacija-div">
+            <a href="dokumentacija.html" class="link-active">Dokumentacija</a>
+        </div>
+        <div class="copyright-div">
+            <p class="footer-ime">Borneo Culović &copy;2020</p>
+            <a href="mailto:bculovic@foi.hr" class="footer-email"><p>bculovic@foi.hr</p></a>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
