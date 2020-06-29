@@ -115,6 +115,28 @@
         text-decoration: none;
     }
 
+    .link-subbuttons {
+        float: left;
+        font-size: 0.8rem;
+        color: #e4fde1;
+        background-color: #456990;
+        text-align: left;
+        padding: 0.7rem 0.8rem;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    .link-subbuttons-active {
+        float: left;
+        font-size: 0.8rem;
+        color: #e4fde1;
+        background-color: #114b5f;
+        text-align: left;
+        padding: 0.7rem 0.8rem;
+        text-decoration: none;
+        width: 100%;
+    }
+
     .link-active{
         float: left;
         font-size: 0.8rem;
@@ -126,7 +148,7 @@
 
 
 
-    .link-buttons:hover, .hover-links:hover .dropdownBtn {
+    .link-buttons:hover, .hover-links:hover, .dropdownBtn, .link-subbuttons:hover {
         background-color: #114b5f;
         color: #e4fde1;
     }
@@ -366,7 +388,6 @@
         padding: 3rem;
     }
 
-
     .universal-form {
         margin-left: auto;
         margin-right: auto;
@@ -374,7 +395,7 @@
         width: 40%;
         padding: 5%;
         color: #456990;
-        text-align: center;
+        text-align: left;
     }
 
     .universal-form:hover {
@@ -432,11 +453,9 @@
     .upravljanjeDiv {
         grid-column-start: 2;
         grid-column-end: 3;
-        margin-bottom: 10rem;
         justify-content: center;
         background-color: #e4fde1;
         width: 100%;
-        justify-content: center;
     }
 
 
@@ -505,5 +524,43 @@
         
         grid-column-start: 2;
         grid-column-end: 3;
+    }
+
+
+    /*ADMINISTRATOR*/
+
+    .adminButton {
+        background-color: white; 
+        color: #456990; 
+        border: 2px solid #456990;
+        font-size: 1.1rem;
+        width: auto;
+        height: auto;
+        transition-duration: 1s;
+    }
+
+    .adminButton:hover {
+        background-color: #456990; 
+        color: white; 
+        border: 2px solid #456990;
+        cursor: pointer;
+    }
+
+    .cellRed{
+        background-color: #f45b69;
+    }
+    .cellGreen{
+        background-color: greenyellow;
+    }
+
+    .legende {
+        font-size: 1.3rem;
+        color: #456990;
+    }
+
+    .additionalLinks{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        margin-top: 5rem;
     }
 }

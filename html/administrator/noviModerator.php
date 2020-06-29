@@ -1,5 +1,5 @@
 <?php
-require '../php/baza.class.php';
+require '../../php/baza.class.php';
 
 
 if(!isset($_SESSION['uloga'])){
@@ -40,27 +40,25 @@ if(isset($_POST['dodajga'])){
     <meta name="keywords" content="pošta, pošiljka, poštanski ured">
     <meta name="author" content="Borneo Culović">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/stylemobile.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/stylemobile.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../javascript/bculovic_jquery.js"></script>
-    <script type="text/javascript" src="../javascript/bculovic.js"></script>
+    <script type="text/javascript" src="../../javascript/bculovic_jquery.js"></script>
+    <script type="text/javascript" src="../../javascript/bculovic.js"></script>
 </head>
 
 <body>
     <header>
         <div class="header-div">
             <div class="logo-div">
-                <a href="../index.php" class="logo-ico">
-                    <img src="../images/posta_logo.png" class="icon" alt="posta_logo" title="Početna">
+                <a href="administrator.php" class="logo-ico">
+                    <img src="../../images/posta_logo.png" class="icon" alt="posta_logo" title="Početna">
                 </a>
             </div>
             <div class="navigation-bar">
-            <a href="../index.php" class="link-buttons">Početna</a>
-            <a href="prijava.php" class="link-buttons">Prijava</a>
-            <a href="registracija.php" class="link-buttons">Registracija</a>
+            <a href="administrator.php" class="link-buttons">Početna</a>
             <a href="o_autoru.html" class="link-buttons">Autor</a>
             <div class="hover-links">
                 <button class="dropdownBtn-active">Popis &darr;</button>
@@ -76,7 +74,7 @@ if(isset($_POST['dodajga'])){
         <div class="ulogiraniKorisnik"><p>'. $_SESSION['ulogiraniKorisnik'] . '</p></div>';
         ?>
                 <div class="logout-div">
-                    <a href="../php/odjava.php" class="logout-button">Odjava</a>
+                    <a href="../../php/odjava.php" class="logout-button">Odjava</a>
                 </div>
             </div>
     </header>

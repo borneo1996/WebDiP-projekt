@@ -1,6 +1,11 @@
 <?php
 error_reporting(0);
 require_once 'php/session.php';
+if($_SESSION['uloga'] == 4){
+    header("Refresh: 0; url=html/administrator/administrator.php");
+} else if($_SESSION['uloga'] == 2){
+    header("Refresh: 0; url=html/registriraniKorisnik/reg-korisnik.php");
+}
 
 if(!isset($_COOKIE['uloga'])){
     $_COOKIE['uloga'] = 1;
@@ -13,9 +18,6 @@ if(isset($_SESSION['aktiviran'])){
         $_SESSION['uloga'] = $_COOKIE['uloga'];
         $akt = true;
     }
-}
-if($_SESSION['uloga'] == 4){
-    header("Refresh: 0; url=html/administrator.php");
 }
 $user = $_SESSION['ulogiraniKorisnik'];
 ?>
@@ -199,7 +201,7 @@ $user = $_SESSION['ulogiraniKorisnik'];
             </div>
             <div class="sadrzaj-div-4">
                 <div class="sadrzaj">
-                    <p><strong>Upravljanje pošiljka</strong></p>
+                    <p><strong>Upravljanje pošiljkama</strong></p>
                     <?php
                         if($_SESSION['uloga'] < 2){
                             echo '<p>Upravljajte pošiljkama  <a href="html/prijava.php">ovdje</a>.</p>';

@@ -163,17 +163,7 @@ if($_SESSION['uloga']<=2){
             </table>
     
         </div>
-        <div class="upravljanjeDiv">
-            <form method="POST" action="dohvaceniKorisnik.php">
-                <label for="identifikator" class="form-label">Unesi ID korisnika</label>
-                <input type="text" name="identifikator" id="identifikator" placeholder="ID korisnika"></input><br>
-                <input type="submit" name="konfigurirajID" id="konfigurirajID" value="Izmjeni"><br><br>
-            </form>
-            <form method="POST" action="noviModerator.php">
-                <input type="submit" name="dodajModeratora" id="dodajModeratora" value="Dodaj novog moderatora">
-            </form>
-            <br><br><br><br><br>
-        </div>
+        
     </div>        
     <div class="footer">
         <div class="copyright-div">

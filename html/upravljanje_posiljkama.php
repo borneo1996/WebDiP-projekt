@@ -152,7 +152,8 @@ if($_SESSION['uloga']<2){
                         <th>Ishodišni ured</th>
                         <th>Sljedeći ured</th>
                         <th>Odredišni ured</th>
-                        <th>Za osobu</th>
+                        <th>Pošiljatelj</th>
+                        <th>Primatelj</th>
                     </tr>
                 </thead>
                 <tbody id="tBody">

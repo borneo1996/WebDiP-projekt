@@ -1,9 +1,15 @@
 <?php
 
 function odjava(){
-    session_unset($_SESSION['ulogiraniKorisnik']);
-    session_unset($_SESSION['blokiran']);
-    session_unset($_SESSION['uloga']);
+    if(isset($_SESSION['ulogiraniKorisnik'])){
+        session_unset($_SESSION['ulogiraniKorisnik']);
+    }
+    if(isset($_SESSION['blokiran'])){
+        session_unset($_SESSION['blokiran']);
+    }
+    if(isset($_SESSION['uloga'])){
+        session_unset($_SESSION['uloga']);
+    }
 
     if(isset($_COOKIE['auth'])){
         unset($_COOKIE['auth']);

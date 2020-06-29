@@ -16,7 +16,7 @@ if($_SESSION['ulogiraniKorisnik'] == null){
     $auth = null;
     $upit = "SELECT * FROM korisnik WHERE korisnicko_ime='{$korisnickoIme}' AND lozinka='{$lozinka}';";
     $upit_korisnik = "SELECT * FROM korisnik WHERE korisnicko_ime='{$korisnickoIme}';";
-    $dohvaceni_korisnik = $veza->selectDB($upit_korisnik);
+    $dohvaceni_korisnik = $veza->selectDB($upit);
     $rezultat = $veza->selectDB($upit);
     if($rezultat){
         $naden = true;
@@ -26,7 +26,7 @@ if($_SESSION['ulogiraniKorisnik'] == null){
     }
     while($redak = mysqli_fetch_array($rezultat)){
         if($redak){
-            if($redak['blokiran_do']){
+            if($redak['blokiran_do'] != null && $redak['blokiran_do'] != "0000-00-00 00:00:00"){
                 $auth = false;
                 $poruka = "Račun je blokiran do ".$redak['blokiran_do'];
             } else {
@@ -43,6 +43,8 @@ if($_SESSION['ulogiraniKorisnik'] == null){
                 $email = $redak['email'];
                 $username = $redak['korisnicko_ime'];
                 $_SESSION['ulogiraniKorisnik'] = $redak['korisnicko_ime'];
+                $_SESSION['korisnik_ID'] = $redak['korisnik_ID'];
+                $korisnikID = $redak['korisnik_ID'];
                 $password = $redak['lozinka'];
                 $uloga = $redak['uloga_uloga_id'];
                 $_SESSION['uloga'] = $redak['uloga_uloga_id'];
@@ -52,11 +54,17 @@ if($_SESSION['ulogiraniKorisnik'] == null){
     if($auth){
         setcookie("auth", $korisnickoIme, false, '/', false);
         setcookie("uloga", $uloga, false, '/', false);
+        setcookie("identifikator", $korisnikID, false, '/', false);
         session_start();
         if(!$aktiviran){
             header("Refresh:0; url=aktivacija.php");
         } else {
-            header("Refresh:0; url=../index.php");
+            if($_SESSION['uloga'] == 4){
+                header("Refresh: 0; url=administrator/administrator.php");
+            }
+            if($_SESSION['uloga'] == 2){
+                header("Refresh: 0; url=registriraniKorisnik/reg-korisnik.php");
+            }
         }
     } else if ($auth == false){
     }

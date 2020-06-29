@@ -1,7 +1,52 @@
 $(document).ready(function () {
     naslov = $(document).find("title").text();
-    console.log(naslov);
     
+    
+    if (naslov == "Novi ured") {
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/korisnici.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (korisnici) {
+                const users = $(korisnici);
+                var count = korisnici.length;
+                var i = 0;
+                var select = document.getElementById('moderator');
+                for(i;i<count;i++){
+                    if(users[i].uloga_uloga_id == 3){
+                        var option = document.createElement('option');
+                        option.value = users[i].korisnik_ID;
+                        option.innerHTML = users[i].ime + " " + users[i].prezime;
+                        select.appendChild(option);
+                    }
+                }
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/drzave.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (rezultat) {
+                const drzave = $(rezultat);
+                var i = 0;
+                var count = drzave.length;
+                var select = document.getElementById('drzava');
+                for(i;i<count;i++){
+                    var option = document.createElement('option');
+                    option.value = drzave[i].drzava_id;
+                    option.innerHTML = drzave[i].naziv_drzave;
+                    select.appendChild(option);
+                }
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+    }
+
     if (naslov == "Korisnici") {
         $.ajax({
             url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/korisnici.php',
@@ -27,7 +72,7 @@ $(document).ready(function () {
                         status = "Blokiran"
                     };
                     var blok_do = users[i].blokiran_do;
-                    if(blok_do == null){
+                    if(blok_do == null || blok_do == "0000-00-00 00:00:00"){
                         blok_do = "/";
                     }
                     var uloga = users[i].uloga_uloga_id;
@@ -41,20 +86,26 @@ $(document).ready(function () {
                         uloga = "Administrator/upravitelj";
                     }
                     var redak = $('<tr>').append(
-                        $('<td>').text(id),
-                        $('<td>').text(ime),
-                        $('<td>').text(prezime),
-                        $('<td>').text(username),
-                        $('<td>').text(lozinka),
-                        $('<td>').text(lozinkaSha1),
-                        $('<td>').text(email),
-                        $('<td>').text(status),
-                        $('<td>').text(blok_do),
-                        $('<td>').text(uloga)
+                        $('<td class="tableCell">').text(id),
+                        $('<td class="tableCell">').text(ime),
+                        $('<td class="tableCell">').text(prezime),
+                        $('<td class="tableCell">').text(username),
+                        $('<td class="tableCell">').text(lozinka),
+                        $('<td class="tableCell">').text(lozinkaSha1),
+                        $('<td class="tableCell">').text(email),
+                        $('<td class="tableCell">').text(status),
+                        $('<td class="tableCell">').text(blok_do),
+                        $('<td class="tableCell">').text(uloga)
                     );
                     tablica.append(redak);
                 }
-                $("#tablicaKorisnici").dataTable();
+                $("#tablicaKorisnici").dataTable({"pageLength": 8});
+                $('.tableCell').each(function(){
+                    var tekst = $(this).text();
+                    if(tekst == 'Blokiran'){
+                        $(this).css('background','#ff95a3');
+                    }
+                })
             },
             error : function() {
                 console.log("Error");
@@ -62,6 +113,7 @@ $(document).ready(function () {
         });
     }
     if (naslov == "Poštanski uredi") {
+        console.log(naslov);
         $.ajax({
             url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/postanski_uredi.php',
             type: 'GET',
@@ -93,7 +145,7 @@ $(document).ready(function () {
                     );
                     tablica.append(redak);
                 }
-                $("#tablicaUreda").dataTable();
+                $("#tablicaUreda").dataTable({"pageLength": 8});
             },
             error : function() {
                 console.log("Error");
@@ -126,18 +178,26 @@ $(document).ready(function () {
                     var uk_cijena = racuni[i].ukupna_cijena;
 
                     var redak = $('<tr>').append(
-                        $('<td>').text(id),
-                        $('<td>').text(izdao),
-                        $('<td>').text(vr_izdavanja),
-                        $('<td>').text(rok_placanja),
-                        $('<td>').text(placen),
-                        $('<td>').text(i_obrade),
-                        $('<td>').text(cijena_posiljke),
-                        $('<td>').text(uk_cijena)
+                        $('<td class="tableCell">').text(id),
+                        $('<td class="tableCell">').text(izdao),
+                        $('<td class="tableCell">').text(vr_izdavanja),
+                        $('<td class="tableCell">').text(rok_placanja),
+                        $('<td class="tableCell">').text(placen),
+                        $('<td class="tableCell">').text(i_obrade),
+                        $('<td class="tableCell">').text(cijena_posiljke),
+                        $('<td class="tableCell">').text(uk_cijena)
                     );
                     tablica.append(redak);
                 }
-                $("#tablicaRacuni").dataTable();
+                $("#tablicaRacuni").dataTable({"pageLength": 8});
+                $('.tableCell').each(function(){
+                    var tekst = $(this).text();
+                    if(tekst == 'NE'){
+                        $(this).css('background','#ff95a3');
+                    } else if (tekst == 'DA'){
+                        $(this).css('background','#baffbb');
+                    }
+                })
             },
             error : function() {
                 console.log("Error");
@@ -163,7 +223,8 @@ $(document).ready(function () {
                     var starting = posiljke[i].polazni;
                     var next = posiljke[i].sljedeci;
                     var last = posiljke[i].zadnji;
-                    var za = posiljke[i].ime + " " + posiljke[i].prezime;
+                    var od = posiljke[i].prviime + " " + posiljke[i].prviprezime;
+                    var za = posiljke[i].drugiime + " " + posiljke[i].drugiprezime;
 
                     if(isporuka == 1){
                         isporuka = "DA";
@@ -178,19 +239,28 @@ $(document).ready(function () {
                     }
 
                     var redak = $('<tr>').append(
-                        $('<td>').text(id),
-                        $('<td>').text(cijenapkg),
-                        $('<td>').text(kilaza),
-                        $('<td>').text(isporuka),
-                        $('<td>').text(dostavljen),
-                        $('<td>').text(starting),
-                        $('<td>').text(next),
-                        $('<td>').text(last),
-                        $('<td>').text(za)
+                        $('<td class="tableCell">').text(id),
+                        $('<td class="tableCell">').text(cijenapkg),
+                        $('<td class="tableCell">').text(kilaza),
+                        $('<td class="tableCell">').text(isporuka),
+                        $('<td class="tableCell">').text(dostavljen),
+                        $('<td class="tableCell">').text(starting),
+                        $('<td class="tableCell">').text(next),
+                        $('<td class="tableCell">').text(last),
+                        $('<td class="tableCell">').text(od),
+                        $('<td class="tableCell">').text(za)
                     );
                     tablica.append(redak);
                 }
-                $("#tablicaPosiljke").dataTable();
+                $("#tablicaPosiljke").dataTable({"pageLength": 8});
+                $('.tableCell').each(function(){
+                    var tekst = $(this).text();
+                    if(tekst == 'DA'){
+                        $(this).css('background','#baffbb');
+                    }else if(tekst == 'NE') {
+                        $(this).css('background','#ff95a3');
+                    }
+                })
             },
             error : function() {
                 console.log("Error");
@@ -210,14 +280,13 @@ $(document).ready(function () {
                 for(i;i<count;i++){
                     var id = drzave[i].drzava_id;
                     var drzava = drzave[i].naziv_drzave;
-                    console.log(drzave[i].naziv);
                     var redak = $('<tr>').append(
                         $('<td>').text(id),
                         $('<td>').text(drzava)
                     );
                     tablica.append(redak);
                 }
-                $("#tablicaDrzave").dataTable();
+                $("#tablicaDrzave").dataTable({"pageLength": 8});
             },
             error : function() {
                 console.log("Error");
@@ -240,7 +309,7 @@ $(document).ready(function () {
                 for(i;i<count;i++){
                     poljeUsera[i] = users[i].korisnicko_ime;
                 }
-                $("#formusername").on('input', function(){
+                $("#formusername").on('change', function(){
                     korisnik_ime = document.getElementById("formusername").value;
                     for(var i = 0; i<poljeUsera.length;i++){
                         if(poljeUsera[i] == korisnik_ime){
@@ -289,6 +358,194 @@ $(document).ready(function () {
                     }
                 }
 
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+    }
+
+    
+
+
+    if (naslov == "Moje pošiljke - poslane") {
+        document.getElementById("kreirajposiljku").disabled = true;
+        $("#tezina").on('input', function(){
+            var tezina = document.getElementById("tezina").value;
+            var duljina = tezina.length;
+            var tocanupis = true;
+            var i = 0;
+            for(i;i<duljina; i++){
+                if(isNaN(tezina[i])){
+                    document.getElementById("kreirajposiljku").disabled = true;
+                    tocanupis = false;
+                } else {
+                    document.getElementById("kreirajposiljku").disabled = false;
+                    tocanupis = true;
+                }
+                if(!tocanupis){
+                    break;
+                }
+            }
+            if(tezina == ""){
+                document.getElementById("kreirajposiljku").disabled = true;
+                tocanupis = false;
+            }
+            if(tocanupis){
+                document.getElementById("kreirajposiljku").disabled = false;
+            } else {
+                document.getElementById("kreirajposiljku").disabled = true;
+            }
+        })
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/html/registriraniKorisnik/dohvatiMojePosiljke.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (rezultat) {
+                const posiljke = $(rezultat);
+                const tablica = $('#tablicaPosiljke');
+                var i = 0;
+                var count = posiljke.length;
+                var select = document.getElementById('id_pošiljka');
+                for(i;i<count;i++){
+                    var id = posiljke[i].pošiljka_id;
+                    var cijenapkg = posiljke[i].cijena_po_kg;
+                    var kilaza = posiljke[i].kilaža;
+                    var isporuka = posiljke[i].isporuka;
+                    var dostavljen = posiljke[i].dostavljena;
+                    var sljedeciured = posiljke[i].sljedeci_ured;
+                    var placena = posiljke[i].račun_zatražen;
+                    var primatelj = posiljke[i].ime + " " + posiljke[i].prezime;
+
+                    if(placena == 0 && isporuka == 1){
+                        var option = document.createElement('option');
+                        option.value = id;
+                        option.innerHTML = id;
+                        select.appendChild(option);
+                    }
+
+                    if(isporuka == 1){
+                        isporuka = "DA";
+                    } else {
+                        isporuka = "NE";
+                    }
+
+                    if(placena == 0){
+                        placena = "NE";
+                    }else if(placena == 1) {
+                        placena = "DA";
+                    }
+
+                    if(dostavljen == 1){
+                        dostavljen = "DA";
+                    } else {
+                        dostavljen = "NE";
+                    }
+                    var redak = $('<tr>').append(
+                        $('<td class="tableCell">').text(id),
+                        $('<td class="tableCell">').text(cijenapkg),
+                        $('<td class="tableCell">').text(kilaza),
+                        $('<td class="tableCell">').text(isporuka),
+                        $('<td class="tableCell">').text(sljedeciured),
+                        $('<td class="tableCell">').text(dostavljen),
+                        $('<td class="tableCell">').text(placena),
+                        $('<td class="tableCell">').text(primatelj)
+                    );
+                    tablica.append(redak);
+                }
+                $("#tablicaPosiljke").dataTable({"pageLength": 8});
+                $('.tableCell').each(function(){
+                    var tekst = $(this).text();
+                    if(tekst == 'DA'){
+                        $(this).css('background','#baffbb');
+                    }else if(tekst == 'NE') {
+                        $(this).css('background','#ff95a3');
+                    }
+                })
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/korisnici.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (rezultat) {
+                const users = $(rezultat);
+                var i = 0;
+                var count = users.length;
+                var select = document.getElementById('korisnik');
+                for(i;i<count;i++){
+                    var id = users[i].korisnik_id;
+                    var imeprezime = users[i].ime + " " + users[i].prezime;
+                    var option = document.createElement('option');
+                    option.value = id;
+                    option.innerHTML = imeprezime;
+                    select.appendChild(option);
+                }
+
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+    }
+
+    if (naslov == "Moje pošiljke - primljene") {
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/html/registriraniKorisnik/dohvatiMojePrimljenePosiljke.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (rezultat) {
+                const posiljke = $(rezultat);
+                const tablica = $('#tablicaPosiljke');
+                var i = 0;
+                var count = posiljke.length;
+                for(i;i<count;i++){
+                    var id = posiljke[i].pošiljka_id;
+                    var cijenapkg = posiljke[i].cijena_po_kg;
+                    var kilaza = posiljke[i].kilaža;
+                    var isporuka = posiljke[i].isporuka;
+                    var dostavljen = posiljke[i].dostavljena;
+                    var sljedeciured = posiljke[i].sljedeci_ured;
+                    var placena = posiljke[i].račun_zatražen;
+                    var primatelj = posiljke[i].ime + " " + posiljke[i].prezime;
+
+                    if(isporuka == 1){
+                        isporuka = "DA";
+                    } else {
+                        isporuka = "NE";
+                    }
+
+                    if(dostavljen == 1){
+                        dostavljen = "DA";
+                    } else {
+                        dostavljen = "NE";
+                    }
+
+                    var redak = $('<tr>').append(
+                        $('<td class="tableCell">').text(id),
+                        $('<td class="tableCell">').text(cijenapkg),
+                        $('<td class="tableCell">').text(kilaza),
+                        $('<td class="tableCell">').text(isporuka),
+                        $('<td class="tableCell">').text(sljedeciured),
+                        $('<td class="tableCell">').text(dostavljen),
+                        $('<td class="tableCell">').text(placena),
+                        $('<td class="tableCell">').text(primatelj)
+                    );
+                    tablica.append(redak);
+                }
+                $("#tablicaPosiljke").dataTable({"pageLength": 8});
+                $('.tableCell').each(function(){
+                    var tekst = $(this).text();
+                    if(tekst == 'DA'){
+                        $(this).css('background','#baffbb');
+                    }else if(tekst == 'NE') {
+                        $(this).css('background','#ff95a3');
+                    }
+                })
             },
             error : function() {
                 console.log("Error");
