@@ -478,7 +478,8 @@ $(document).ready(function () {
                 var count = users.length;
                 var select = document.getElementById('korisnik');
                 for(i;i<count;i++){
-                    var id = users[i].korisnik_id;
+                    var id = users[i].korisnik_ID;
+                    console.log(id);
                     var imeprezime = users[i].ime + " " + users[i].prezime;
                     var option = document.createElement('option');
                     option.value = id;
@@ -552,4 +553,70 @@ $(document).ready(function () {
             } 
         });
     }
+
+    if (naslov == "Moji računi") {
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/html/registriraniKorisnik/mojiRacuni.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (rezultat) {
+                const racuni = $(rezultat);
+                const tablica = $('#tablicaRacuni');
+                var select = document.getElementById('racuni');
+                var neplaceniracuni = 0;
+                var i = 0;
+                var count = racuni.length;
+                for(i;i<count;i++){
+                    var id = racuni[i].račun_id;
+                    var vr_izdavanja = racuni[i].vrijeme_izdavanja;
+                    var rok_placanja = racuni[i].rok_plaćanja;
+                    var placen = racuni[i].plaćen;
+                    if(placen == 1){
+                        placen = "DA";
+                    } else {
+                        placen = "NE";
+                        neplaceniracuni++;
+                        var option = document.createElement('option');
+                        option.value = racuni[i].račun_id;
+                        option.innerHTML = racuni[i].račun_id;
+                        select.appendChild(option);
+                    }
+                    var i_obrade = racuni[i].iznos_obrade;
+                    var cijena_posiljke = racuni[i].cijena_pošiljke;
+                    var uk_cijena = racuni[i].ukupna_cijena;
+
+                    var redak = $('<tr>').append(
+                        $('<td class="tableCell">').text(id),
+                        $('<td class="tableCell">').text(vr_izdavanja),
+                        $('<td class="tableCell">').text(rok_placanja),
+                        $('<td class="tableCell">').text(placen),
+                        $('<td class="tableCell">').text(i_obrade),
+                        $('<td class="tableCell">').text(cijena_posiljke),
+                        $('<td class="tableCell">').text(uk_cijena)
+                    );
+                    tablica.append(redak);
+                }
+                $("#tablicaRacuni").dataTable({"pageLength": 8});
+                if(neplaceniracuni < 1){
+                    document.getElementById("racuni").disabled = true;
+                    document.getElementById("platiracun").disabled = true;
+                } else {
+                    document.getElementById("racuni").disabled = false;
+                    document.getElementById("platiracun").disabled = false;
+                }
+                $('.tableCell').each(function(){
+                    var tekst = $(this).text();
+                    if(tekst == 'NE'){
+                        $(this).css('background','#ff95a3');
+                    } else if (tekst == 'DA'){
+                        $(this).css('background','#baffbb');
+                    }
+                })
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+    }
+
 })

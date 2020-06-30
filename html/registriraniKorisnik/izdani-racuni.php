@@ -8,7 +8,7 @@ require '../../php/session.php';
 <html lang="hr">
 
 <head>
-    <title>Izdani računi</title>
+    <title>Moji računi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -29,12 +29,12 @@ require '../../php/session.php';
     <header>
         <div class="header-div">
             <div class="logo-div">
-                <a href="administrator.php" class="logo-ico">
+                <a href="reg-korisnik.php" class="logo-ico">
                     <img src="../../images/posta_logo.png" class="icon" alt="posta_logo" title="Početna">
                 </a>
             </div>
             <div class="navigation-bar">
-                <a href="administrator.php" class="link-buttons">Početna</a>
+                <a href="reg-korisnik.php" class="link-buttons">Početna</a>
                 <a href="prijava.php" class="link-buttons">Prijava</a>
                 <a href="registracija.php" class="link-buttons">Registracija</a>
                 <a href="../o_autoru.html" class="link-buttons">Autor</a>
@@ -58,14 +58,13 @@ require '../../php/session.php';
 
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Računi</strong></p>
+            <p><strong>Moji računi</strong></p>
         </div>
         <div class="div-table">
             <table id="tablicaRacuni" class="tablica">
                 <thead id="tHead">
                     <tr>
-                        <th>ID</th>
-                        <th>Izdao</th>
+                        <th>ID računa</th>
                         <th>Vrijeme izdavanja</th>
                         <th>Rok plaćanja</th>
                         <th>Plaćen</th>
@@ -78,7 +77,15 @@ require '../../php/session.php';
     
                 </tbody>
                 
-            </table>
+            </table><br><br>
+            <div class="universal-form">
+                    <form action="platiRacun.php" method="post" class="forma">
+                        <legend>Plati račun</legend><br><br>
+                        <label for="racuni" class="form-label">Račun ID</label>
+                        <select type="select" class="form-input" id="racuni" name="racuni"></select><br><br>
+                        <input type="submit" id="platiracun" name="platiracun" value="Plati račun">
+                    </form>
+                </div>
     
         </div>
 
