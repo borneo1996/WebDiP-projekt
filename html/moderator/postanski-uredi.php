@@ -1,15 +1,28 @@
 <?php
 error_reporting(0);
 require_once '../../php/session.php';
-require '../../php/https.php';
-
+if(!isset($_COOKIE['uloga'])){
+    $_COOKIE['uloga'] = 1;
+}
+if(isset($_SESSION['aktiviran'])){
+    if($_SESSION['aktiviran']==0){
+        $_SESSION['uloga']=1;
+        $akt = false;
+    } else {
+        $_SESSION['uloga'] = $_COOKIE['uloga'];
+        $akt = true;
+    }
+}
+if(!isset($_SESSION['ulogiraniKorisnik'])){
+    $_SESSION['ulogiraniKorisnik'] = $_COOKIE['username'];
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="hr">
 
 <head>
-    <title>Upravljanje pošiljkama - ADMIN</title>
+    <title>Poštanski uredi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -30,71 +43,58 @@ require '../../php/https.php';
     <header>
         <div class="header-div">
             <div class="logo-div">
-                <a href="administrator.php" class="logo-ico">
+                <a href="moderator.php" class="logo-ico">
                     <img src="../../images/posta_logo.png" class="icon" alt="posta_logo" title="Početna">
                 </a>
             </div>
             <div class="navigation-bar">
-            <a href="administrator.php" class="link-buttons">Početna</a>
+            <a href="moderator.php" class="link-buttons">Početna</a>
             <a href="../o_autoru.html" class="link-buttons">Autor</a>
             <div class="hover-links">
                 <button class="dropdownBtn-active">Popis &darr;</button>
                 <div class="dropdown-linkovi">
-                    <a href="upravljanje_posiljkama.php" class="link-active">Upravljanje pošiljkama</a>
-                    <a href="postanski-uredi.php" class="link-buttons">Poštanski uredi</a>
-                    <a href="izdani-racuni.php" class="link-buttons">Izdani računi</a>
+                    <a href="upravljanje_posiljkama.php" class="link-buttons">Upravljanje pošiljkama</a>
+                    <a href="postanski-uredi.php" class="link-active">Poštanski uredi</a>
+                    <a href="racuni.php" class="link-buttons">Računi</a>
                     <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
-                    <a href="drzave.php" class="link-buttons">Države</a>
                 </div>
             </div>
         </div>
-        <div class="ulogiraniKorisnik"><p><?php echo $_SESSION['ulogiraniKorisnik'] ?></p></div>
-            <div class="logout-div">
-                <a href="../../php/odjava.php" class="logout-button">Odjava</a>
+        <?php echo '
+        <div class="ulogiraniKorisnik"><p>'. $_SESSION['ulogiraniKorisnik'] . '</p></div>';
+        ?>
+                <div class="logout-div">
+                    <a href="../../php/odjava.php" class="logout-button">Odjava</a>
+                </div>
             </div>
-        </div>
     </header>
 
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Upravljanje pošiljkama</strong></p>
+            <p><strong>Poštanski uredi</strong></p>
         </div>
-        <div class="additionalLinks">
-            <a href="upravljanje_posiljkama.php" class="link-subbuttons-active">Pošiljke</a>
-            <a href="upravljanje_posiljkama_kreirane.php" class="link-subbuttons">Kreirane pošiljke</a>
-        </div>
+
         <div class="div-table">
-            <table id="tablicaPosiljke" class="tablica">
+            <label for="pretraga">Pretraži po državi</label><br>
+            <input type="text" name="pretraga" id="pretraga" placeholder="Država"><br><hr><br>
+            <table id="tablicaUreda" class="tablica">
                 <thead id="tHead">
                     <tr>
                         <th>ID</th>
-                        <th>Cijena/KG</th>
-                        <th>Kilogrami</th>
-                        <th>Isporuka</th>
-                        <th>Dostavljena</th>
-                        <th>Ishodišni ured</th>
-                        <th>Sljedeći ured</th>
-                        <th>Odredišni ured</th>
-                        <th>Pošiljatelj</th>
-                        <th>Primatelj</th>
+                        <th>Naziv</th>
+                        <th>Adresa</th>
+                        <th>Grad</th>
+                        <th>Država</th>
+                        <th>Moderator</th>
+                        <th>Broj primljenih pošiljki</th>
+                        <th>Broj poslanih pošiljki</th>
                     </tr>
                 </thead>
                 <tbody id="tBody">
     
                 </tbody>
                 
-            </table><br><hr><br>
-            <div class="universal-form">
-                <form action="unesiCijenu.php" method="post" class="forma">
-                    <legend>Unos cijene</legend><br><br>
-                    <label for="pošiljkaID" class="form-label">ID pošiljke</label><br>
-                    <select type="select" class="form-input" id="pošiljkaID" name="pošiljkaID"></select><br><br>
-                    <label for="cijena" class="form-label">Cijena/KG</label>
-                    <input type="number" class="form-input" id="cijena" name="cijena"></select><br><br>
-                    <input type="submit" id="dodajcijenu" name="dodajcijenu" value="Promijeni">
-                </form>
-            </div><br><br>
-    
+            </table>
         </div>
 
     <div class="footer">
@@ -107,4 +107,3 @@ require '../../php/https.php';
 </body>
 
 </html>
-

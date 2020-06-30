@@ -29,21 +29,20 @@ require '../../php/session.php';
     <header>
         <div class="header-div">
             <div class="logo-div">
-                <a href="administrator.php" class="logo-ico">
+                <a href="moderator.php" class="logo-ico">
                     <img src="../../images/posta_logo.png" class="icon" alt="posta_logo" title="Početna">
                 </a>
             </div>
             <div class="navigation-bar">
-                <a href="administrator.php" class="link-buttons">Početna</a>
+                <a href="moderator.php" class="link-buttons">Početna</a>
                 <a href="../o_autoru.html" class="link-buttons">Autor</a>
                 <div class="hover-links">
                     <button class="dropdownBtn-active">Popis &darr;</button>
                     <div class="dropdown-linkovi">
                         <a href="upravljanje_posiljkama.php" class="link-buttons">Upravljanje pošiljkama</a>
                         <a href="postanski-uredi.php" class="link-buttons">Poštanski uredi</a>
-                        <a href="izdani-racuni.php" class="link-active">Izdani računi</a>
+                        <a href="racuni.php" class="link-active">Izdani računi</a>
                         <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
-                        <a href="drzave.php" class="link-buttons">Države</a>
                     </div>
                 </div>
             </div>
@@ -57,6 +56,10 @@ require '../../php/session.php';
     <div class="main-content">
         <div class="page-title">
             <p><strong>Računi</strong></p>
+        </div>
+        <div class="additionalLinks">
+            <a href="racuni.php" class="link-subbuttons-active">Računi</a>
+            <a href="zahtjevi.php" class="link-subbuttons">Zahtjevi</a>
         </div>
         <div class="div-table">
             <table id="tablicaRacuni" class="tablica">

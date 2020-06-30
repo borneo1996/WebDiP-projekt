@@ -25,7 +25,6 @@ $uloga = "2";
 
 $upit = "INSERT INTO korisnik (ime, prezime, korisnicko_ime, lozinka, lozinka_sha1, email, aktiviran, aktivacijski_kod, aktivan, blokiran_do, uloga_uloga_id) 
 VALUES ('$ime', '$prezime', '$username', '$lozinka', '$lozinkasha', '$email', '$aktiviran', '$kod', '$aktivan', null, '$uloga')";
-$upittest = "INSERT INTO korisnik (ime, prezime) VALUES ('test', 'testic')";
 if($ime && $prezime && $email && $lozinka && $unique_username){
     $veza->updateDB($upit, '');
     $subject = "Pošta - Aktivacijski kod";
@@ -33,7 +32,7 @@ if($ime && $prezime && $email && $lozinka && $unique_username){
     $headers = "FROM: bculovic@foi.hr";
     mail($email, $subject, $tekst, $headers);
     echo 'Registracija uspješna! Provjerite email radi aktivacijskog koda!';
-    echo '<br><br><button><a href="../index.php">Prijava</a></button>';
+    echo '<br><br><button><a href="../html/prijava.php">Prijava</a></button>';
 } else {
     if(!$unique_username){
         echo 'Korisnik sa tim korisničkim imenom već postoji!';

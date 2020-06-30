@@ -9,7 +9,7 @@ require '../../php/https.php';
 <html lang="hr">
 
 <head>
-    <title>Upravljanje pošiljkama - ADMIN</title>
+    <title>Upravljanje pošiljkama - Moderator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -30,21 +30,20 @@ require '../../php/https.php';
     <header>
         <div class="header-div">
             <div class="logo-div">
-                <a href="administrator.php" class="logo-ico">
+                <a href="moderator.php" class="logo-ico">
                     <img src="../../images/posta_logo.png" class="icon" alt="posta_logo" title="Početna">
                 </a>
             </div>
             <div class="navigation-bar">
-            <a href="administrator.php" class="link-buttons">Početna</a>
+            <a href="moderator.php" class="link-buttons">Početna</a>
             <a href="../o_autoru.html" class="link-buttons">Autor</a>
             <div class="hover-links">
                 <button class="dropdownBtn-active">Popis &darr;</button>
                 <div class="dropdown-linkovi">
                     <a href="upravljanje_posiljkama.php" class="link-active">Upravljanje pošiljkama</a>
                     <a href="postanski-uredi.php" class="link-buttons">Poštanski uredi</a>
-                    <a href="izdani-racuni.php" class="link-buttons">Izdani računi</a>
+                    <a href="racuni.php" class="link-buttons">Računi</a>
                     <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
-                    <a href="drzave.php" class="link-buttons">Države</a>
                 </div>
             </div>
         </div>
@@ -83,18 +82,7 @@ require '../../php/https.php';
     
                 </tbody>
                 
-            </table><br><hr><br>
-            <div class="universal-form">
-                <form action="unesiCijenu.php" method="post" class="forma">
-                    <legend>Unos cijene</legend><br><br>
-                    <label for="pošiljkaID" class="form-label">ID pošiljke</label><br>
-                    <select type="select" class="form-input" id="pošiljkaID" name="pošiljkaID"></select><br><br>
-                    <label for="cijena" class="form-label">Cijena/KG</label>
-                    <input type="number" class="form-input" id="cijena" name="cijena"></select><br><br>
-                    <input type="submit" id="dodajcijenu" name="dodajcijenu" value="Promijeni">
-                </form>
-            </div><br><br>
-    
+            </table>
         </div>
 
     <div class="footer">

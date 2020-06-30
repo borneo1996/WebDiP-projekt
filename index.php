@@ -3,7 +3,9 @@ error_reporting(0);
 require_once 'php/session.php';
 if($_SESSION['uloga'] == 4){
     header("Refresh: 0; url=html/administrator/administrator.php");
-} else if($_SESSION['uloga'] == 2){
+} else if($_SESSION['uloga'] == 3){
+    header("Refresh: 0; url=html/moderator/moderator.php");
+}else if($_SESSION['uloga'] == 2){
     header("Refresh: 0; url=html/registriraniKorisnik/reg-korisnik.php");
 }
 

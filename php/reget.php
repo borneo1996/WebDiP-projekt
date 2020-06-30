@@ -11,6 +11,7 @@ $rezultat = $veza->selectDB($upit);
 while($redak = mysqli_fetch_array($rezultat)){
     $_SESSION['aktiviran'] = $redak['aktiviran'];
     $_SESSION['uloga'] = $redak['uloga'];
+    $_COOKIE['uloga'] = $redak['uloga'];
 }
 
 header("Refresh:0; url=../index.php");

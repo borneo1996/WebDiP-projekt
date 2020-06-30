@@ -65,6 +65,9 @@ if($_SESSION['ulogiraniKorisnik'] == null){
             if($_SESSION['uloga'] == 2){
                 header("Refresh: 0; url=registriraniKorisnik/reg-korisnik.php");
             }
+            if($_SESSION['uloga'] == 3){
+                header("Refresh: 0; url=moderator/moderator.php");
+            }
         }
     } else if ($auth == false){
     }

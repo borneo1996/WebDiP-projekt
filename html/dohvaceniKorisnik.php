@@ -27,7 +27,12 @@ if(isset($_POST['update'])){
     $identifikat= $_POST['identifikacija'];
     $role = $_POST['adminuloga'];
     $upit = "UPDATE korisnik SET ime='{$ime}', prezime='{$prezime}', korisnicko_ime='{$korisnickoime}', lozinka='{$lozinka}', lozinka_sha1='{$lozinkasha}', email='{$email}', aktiviran='{$aktiviran}', aktivacijski_kod='{$aktivkod}', aktivan='{$aktivan}', blokiran_do='{$blokirando}', uloga_uloga_id='{$role}' WHERE korisnik_ID='{$identifikat}';";  
-    $veza->updateDB($upit, "korisnici.php");
+    if($_SESSION['uloga'] == 3){
+        $veza->updateDB($upit, "moderator/korisnici.php");
+    }
+    if($_SESSION['uloga'] == 4){
+        $veza->updateDB($upit, "administrator/korisnici.php");
+    }
     $veza->zatvoriDB();
 
 }
@@ -36,7 +41,12 @@ if(isset($_POST['obrisi'])){
     $veza->spojiDB();
     $identifikat= $_POST['identifikacija'];
     $upit = "DELETE FROM korisnik WHERE korisnik_ID='{$identifikat}'";
-    $veza->updateDB($upit, "korisnici.php");
+    if($_SESSION['uloga'] == 3){
+        $veza->updateDB($upit, "moderator/korisnici.php");
+    }
+    if($_SESSION['uloga'] == 4){
+        $veza->updateDB($upit, "administrator/korisnici.php");
+    }
     $veza->zatvoriDB();
 
 }

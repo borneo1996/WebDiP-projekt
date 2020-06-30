@@ -88,7 +88,7 @@ require '../../php/baza.class.php';
     
     <div class="footer">
         <div class="dokumentacija-div">
-            <a href="../dokumentacija.html" class="link-buttons">Dokumentacija</a>
+            <a href="../../dokumentacija.html" class="link-buttons">Dokumentacija</a>
         </div>
         <div class="copyright-div">
             <p class="footer-ime">Borneo Culović &copy;2020</p>
