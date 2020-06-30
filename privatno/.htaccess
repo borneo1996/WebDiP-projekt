@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Password Protected Area"
+AuthUserFile /var/www/webdip.barka.foi.hr/2019_projekti/WebDiP2019x018/privatno/.htpasswd
+Require user WebDiP2019x018

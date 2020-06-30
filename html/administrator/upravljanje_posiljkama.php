@@ -59,6 +59,10 @@ require '../../php/https.php';
         <div class="page-title">
             <p><strong>Upravljanje pošiljkama</strong></p>
         </div>
+        <div class="additionalLinks">
+            <a href="upravljanje_posiljkama.php" class="link-subbuttons-active">Pošiljke</a>
+            <a href="upravljanje_posiljkama_kreirane.php" class="link-subbuttons">Kreirane pošiljke</a>
+        </div>
         <div class="div-table">
             <table id="tablicaPosiljke" class="tablica">
                 <thead id="tHead">

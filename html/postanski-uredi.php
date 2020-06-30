@@ -172,6 +172,8 @@ $user = $_SESSION['ulogiraniKorisnik'];
             <p><strong>Poštanski uredi</strong></p>
         </div>
         <div class="div-table">
+            <label for="pretraga">Pretraži po državi</label><br>
+            <input type="text" name="pretraga" id="pretraga" placeholder="Država"><br><hr><br>
             <table id="tablicaUreda" class="tablica">
                 <thead id="tHead">
                     <tr>

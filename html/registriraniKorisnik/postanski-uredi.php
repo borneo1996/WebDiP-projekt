@@ -56,8 +56,6 @@ if(!isset($_SESSION['ulogiraniKorisnik'])){
                     <a href="upravljanje_posiljkama.php" class="link-buttons">Upravljanje pošiljkama</a>
                     <a href="postanski-uredi.php" class="link-active">Poštanski uredi</a>
                     <a href="izdani-racuni.php" class="link-buttons">Izdani računi</a>
-                    <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
-                    <a href="drzave.php" class="link-buttons">Države</a>
                 </div>
             </div>
         </div>
@@ -76,6 +74,8 @@ if(!isset($_SESSION['ulogiraniKorisnik'])){
         </div>
 
         <div class="div-table">
+            <label for="pretraga">Pretraži po državi</label><br>
+            <input type="text" name="pretraga" id="pretraga" placeholder="Država"><br><hr><br>
             <table id="tablicaUreda" class="tablica">
                 <thead id="tHead">
                     <tr>

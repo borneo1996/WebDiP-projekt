@@ -25,13 +25,13 @@ var brojevi = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 function onLoad() {
     if (document.title === "Registracija") {
         disable_registrirajBtn();
-        document.getElementById("formname").addEventListener("change", provjeraImena);
-        document.getElementById("formpname").addEventListener("change", provjeraPrezimena);
-        document.getElementById("formusername").addEventListener("change", provjeraKorisnickogImena);
-        document.getElementById("formmail").addEventListener("change", provjeraMaila);
-        document.getElementById("formpassword").addEventListener("change", provjeraPassworda);
-        document.getElementById("formpassword2").addEventListener("change", provjeraPassworda);
-        document.getElementById("captcha").addEventListener("change", provjeraCaptcha);
+        document.getElementById("formname").addEventListener("input", provjeraImena);
+        document.getElementById("formpname").addEventListener("input", provjeraPrezimena);
+        document.getElementById("formusername").addEventListener("input", provjeraKorisnickogImena);
+        document.getElementById("formmail").addEventListener("input", provjeraMaila);
+        document.getElementById("formpassword").addEventListener("input", provjeraPassworda);
+        document.getElementById("formpassword2").addEventListener("input", provjeraPassworda);
+        document.getElementById("captcha").addEventListener("input", provjeraCaptcha);
         setCaptcha();
     } else if (document.title === "Početna - ADMIN") {
         
@@ -67,20 +67,20 @@ function provjeraImena() {
     if (unos.length < 3) {
         document.getElementById("formname").style.borderColor = "red";
         imeProvjera = false;
-        console.log("Ime je prekratko.");
+        document.getElementById("porukica").innerHTML = "Ime je prekratko.";
     } else {
         document.getElementById("formname").style.borderColor = null;
         imeProvjera = true;
-
+        document.getElementById("porukica").innerHTML = "";
     }
     var duzinaUnosa = unos.length;
     for (var i = 0; i < duzinaUnosa; i++) {
         if (isNaN(unos[i])) {
-
+            document.getElementById("porukica").innerHTML = "";
         } else {
             document.getElementById("formname").style.borderColor = "red";
             imeProvjera = false;
-            console.log("Ime ne može sadržavati brojeve.");
+            document.getElementById("porukica").innerHTML = "Ime ne može sadržavati brojeve.";
         }
     }
 
@@ -92,20 +92,23 @@ function provjeraPrezimena() {
     if (unos.length < 3) {
         document.getElementById("formpname").style.borderColor = "red";
         prezimeProvjera = false;
-        console.log("Prezime je prekratko.");
+        document.getElementById("porukica").innerHTML = "Prezime je prekratko.";
+        
     } else {
         document.getElementById("formpname").style.borderColor = null;
         prezimeProvjera = true;
+        document.getElementById("porukica").innerHTML = "";
     }
 
     var duzinaUnosa = unos.length;
     for (var i = 0; i < duzinaUnosa; i++) {
         if (isNaN(unos[i])) {
-
+            document.getElementById("porukica").innerHTML = "";
         } else {
             document.getElementById("formpname").style.borderColor = "red";
             prezimeProvjera = false;
             console.log("Prezime ne može sadržavati brojeve.");
+            document.getElementById("porukica").innerHTML = "Prezime ne može sadržavati brojeve!";
         }
     }
     provjeraForme();
@@ -113,24 +116,31 @@ function provjeraPrezimena() {
 
 function provjeraKorisnickogImena() {
     var unos = document.getElementById("formusername").value;
-    if (unos.length < 8) {
+    if (unos.length < 6) {
         document.getElementById("formusername").style.borderColor = "red";
         korisnickoimeProvjera = false;
+        document.getElementById("porukica").innerHTML = "Korisničko ime je prekratko.";
     } else {
         document.getElementById("formusername").style.borderColor = null;
         korisnickoimeProvjera = true;
+        document.getElementById("porukica").innerHTML = "";
     }
     var duzinaUnosa = unos.length;
     var brojUUseru = broj_u_stringu(unos);
     if (!brojUUseru) {
         korisnickoimeProvjera = false;
         document.getElementById("formusername").style.borderColor = "red";
+        document.getElementById("porukica").innerHTML = "Korisničko ime mora sadržavati barem jedan broj.";
+    } else {
+        document.getElementById("porukica").innerHTML = "";
     }
 
-    if (duzinaUnosa < 8) {
-        console.log("Korisničko ime je prekratko.");
+    if (duzinaUnosa < 6) {
+        document.getElementById("porukica").innerHTML = "Korisničko ime je prekratko.";
         korisnickoimeProvjera = false;
         document.getElementById("formusername").style.borderColor = "red";
+    }else {
+        document.getElementById("porukica").innerHTML = "";
     }
 
     provjeraForme();
@@ -143,7 +153,9 @@ function provjeraMaila() {
     if (unos[0] == ".") {
         document.getElementById("formmail").style.borderColor = "red";
         emailProvjera = false;
-        console.log("Točka ne može stajati na prvom mjestu!");
+        document.getElementById("porukica").innerHTML = "Točka ne može stajati na prvom mjestu!";
+    }else {
+        document.getElementById("porukica").innerHTML = "";
     }
     var duzinaUnosa = unos.length;
 
@@ -152,7 +164,10 @@ function provjeraMaila() {
             if (unos[i + 1] === ".") {
                 document.getElementById("formmail").style.borderColor = "red";
                 emailProvjera = false;
-                console.log("Dvije točke ne mogu biti uzastopne");
+                document.getElementById("porukica").innerHTML ="Dvije točke ne mogu biti uzastopne u mailu.";
+            }
+            else {
+                document.getElementById("porukica").innerHTML = "";
             }
         }
     }
@@ -160,23 +175,34 @@ function provjeraMaila() {
     var mjestoMonkeya = unos.indexOf("@");
     var brojMonkeya = unos.split("@").length - 1;
     if (mjestoMonkeya === -1) {
-        console.log("Fali @!");
+        document.getElementById("porukica").innerHTML = "Fali @!";
         document.getElementById("formmail").style.borderColor = "red";
         emailProvjera = false;
     } else if (mjestoMonkeya < 4) {
-        console.log("Znak @ mora biti na barem 5. mjestu.");
+        document.getElementById("porukica").innerHTML = "Znak @ mora biti na barem 5. mjestu.";
         document.getElementById("formmail").style.borderColor = "red";
         emailProvjera = false;
+    } else {
+        document.getElementById("porukica").innerHTML = "";
     }
 
     if (brojMonkeya !== 1) {
-        console.log("Znak @ mora biti na samo jednom mjestu u adresi!");
+        document.getElementById("porukica").innerHTML = "Znak @ mora biti na samo jednom mjestu u adresi!";
         document.getElementById("formmail").style.borderColor = "red";
         emailProvjera = false;
+    } else {
+        document.getElementById("porukica").innerHTML = "";
     }
-
-    if (unos[duzinaUnosa - 1] !== "r" || unos[duzinaUnosa - 2] !== "h" || unos[duzinaUnosa - 3] !== ".") {
-        console.log("Email mora završavati na .hr");
+    var hr = unos[duzinaUnosa - 3] + unos[duzinaUnosa - 2] + unos[duzinaUnosa - 1];
+    var com = unos[duzinaUnosa - 4] + unos[duzinaUnosa - 3] + unos[duzinaUnosa - 2] + unos[duzinaUnosa - 1];
+    console.log(hr);
+    console.log(com);
+    if (hr == ".hr" || com == ".com") {
+        document.getElementById("formmail").style.borderColor = null;
+        emailProvjera = true;
+        document.getElementById("porukica").innerHTML = "";
+    } else {
+        document.getElementById("porukica").innerHTML = "Email mora završavati na .hr ili .com";
         document.getElementById("formmail").style.borderColor = "red";
         emailProvjera = false;
     }
@@ -196,15 +222,17 @@ function provjeraPassworda() {
 
     if (duzinaUnosa < 8) {
         passwordProvjera = false;
-        console.log("Password mora imati barem 8 znamenki.");
+        document.getElementById("porukica").innerHTML = "Password mora imati barem 8 znamenki.";
         document.getElementById("formpassword").style.borderColor = "red";
     } else if (unos !== unos2) {
         document.getElementById("formpassword").style.borderColor = null;
         document.getElementById("formpassword2").style.borderColor = null;
         passwordProvjera = false;
-        console.log("Ponovljena lozinka nije ista kao i lozinka.");
+        document.getElementById("porukica").innerHTML = "Ponovljena lozinka nije ista kao i lozinka.";
         document.getElementById("formpassword").style.borderColor = "red";
         document.getElementById("formpassword2").style.borderColor = "red";
+    } else {
+        document.getElementById("porukica").innerHTML = "";
     }
     provjeraForme();
 

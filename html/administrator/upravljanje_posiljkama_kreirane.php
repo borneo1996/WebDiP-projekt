@@ -1,8 +1,7 @@
 <?php
-//error_reporting(0);
+error_reporting(0);
 require_once '../../php/session.php';
 require '../../php/https.php';
-
 
 ?>
 
@@ -10,7 +9,7 @@ require '../../php/https.php';
 <html lang="hr">
 
 <head>
-    <title>Moje pošiljke - poslane</title>
+    <title>Upravljanje pošiljkama - kreirane</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -31,12 +30,12 @@ require '../../php/https.php';
     <header>
         <div class="header-div">
             <div class="logo-div">
-                <a href="reg-korisnik.php" class="logo-ico">
+                <a href="administrator.php" class="logo-ico">
                     <img src="../../images/posta_logo.png" class="icon" alt="posta_logo" title="Početna">
                 </a>
             </div>
             <div class="navigation-bar">
-            <a href="reg-korisnik.php" class="link-buttons">Početna</a>
+            <a href="administrator.php" class="link-buttons">Početna</a>
             <a href="../o_autoru.html" class="link-buttons">Autor</a>
             <div class="hover-links">
                 <button class="dropdownBtn-active">Popis &darr;</button>
@@ -44,6 +43,8 @@ require '../../php/https.php';
                     <a href="upravljanje_posiljkama.php" class="link-active">Upravljanje pošiljkama</a>
                     <a href="postanski-uredi.php" class="link-buttons">Poštanski uredi</a>
                     <a href="izdani-racuni.php" class="link-buttons">Izdani računi</a>
+                    <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
+                    <a href="drzave.php" class="link-buttons">Države</a>
                 </div>
             </div>
         </div>
@@ -53,27 +54,26 @@ require '../../php/https.php';
             </div>
         </div>
     </header>
+
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Moje pošiljke - poslane</strong></p>
+            <p><strong>Upravljanje pošiljkama</strong></p>
         </div>
         <div class="additionalLinks">
-            <a href="upravljanje_posiljkama.php" class="link-subbuttons-active">Poslane</a>
-            <a href="upravljanje_posiljkama_primljene.php" class="link-subbuttons">Primljene</a>
+            <a href="upravljanje_posiljkama.php" class="link-subbuttons">Pošiljke</a>
+            <a href="upravljanje_posiljkama_kreirane.php" class="link-subbuttons-active">Kreirane pošiljke</a>
         </div>
         <div class="div-table">
-            <legend class="legende">Poslane</legend><br>
+            <legend>Tablica zapisa iz popisa pošiljki</legend><br>
             <table id="tablicaPosiljke" class="tablica">
                 <thead id="tHead">
                     <tr>
-                        <th>ID</th>
-                        <th>Cijena/KG</th>
-                        <th>Kilogrami</th>
-                        <th>Isporuka</th>
-                        <th>Sljedeći ured</th>
-                        <th>Dostavljena</th>
-                        <th>Račun zatražen</th>
-                        <th>Primatelj</th>
+                        <th>Zapis</th>
+                        <th>Pošiljka</th>
+                        <th>Vrijeme slanja</th>
+                        <th>Suglasnost</th>
+                        <th>Polazni ured</th>
+                        <th>Zadnji ured</th>
                     </tr>
                 </thead>
                 <tbody id="tBody">
@@ -81,28 +81,33 @@ require '../../php/https.php';
                 </tbody>
                 
             </table><br><hr><br>
-            <div class="registracija-div">
-                <div class="universal-form">
-                    <form action="zatraziRacun.php" method="post" class="forma">
-                        <legend>Zatraži račun</legend><br><br>
-                        <label for="id" class="form-label">ID pošiljke</label><br>
-                        <select type="select" class="form-input" id="id_pošiljka" name="id_pošiljka"></select><br><br>
-                        <input type="submit" id="zatraziracun" name="zatraziracun" value="Zatraži račun">
-                    </form>
-                </div><br><br>
-                <div class="universal-form">
-                    <form action="kreirajPosiljku.php" method="post" class="forma">
-                        <legend>Kreiraj pošiljku</legend><br><br>
-                        <label for="tezina" class="form-label">Težina</label><br>
-                        <input type="text" class="form-input" id="tezina" name="tezina" placeholder="Težina pošiljke u KG"><br><br>
-                        <label for="korisnik" class="form-label">Primatelj</label><br>
-                        <select type="select" class="form-input" id="korisnik" name="korisnik"></select><br><br>
-                        <input type="submit" id="kreirajposiljku" name="kreirajposiljku" value="Kreiraj pošiljku">
-                    </form>
-                </div>
-            </div>
-
-        </div><br><br>
+            <div class="universal-form">
+                <form action="unesiUrede.php" method="post" class="forma">
+                    <legend>Unos ureda</legend><br><br>
+                    <label for="zapis_id" class="form-label">ID zapisa</label><br>
+                    <select type="select" class="form-input" id="zapis_id" name="zapis_id"></select><br><br>
+                    <label for="polazni_id" class="form-label">Polazni ured</label><br>
+                    <select type="select" class="form-input" id="polazni_id" name="polazni_id"></select><br><br>
+                    <label for="odredisni_id" class="form-label">Odredišni ured</label><br>
+                    <select type="select" class="form-input" id="odredisni_id" name="odredisni_id"></select><br><br>
+                    <input type="submit" id="dodajurede" name="dodajurede" value="Primjeni">
+                </form>
+            </div><br><hr><br>
+            <legend>Tablica poštanskih ureda</legend><br>
+            <table id="tablicaUreda" class="tablica">
+                <thead id="tHead">
+                    <tr>
+                        <th>ID ureda</th>
+                        <th>Naziv</th>
+                    </tr>
+                </thead>
+                <tbody id="tBody">
+    
+                </tbody>
+                
+            </table><br><br>
+    
+        </div>
 
     <div class="footer">
         <div class="copyright-div">

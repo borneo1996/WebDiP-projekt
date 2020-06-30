@@ -35,8 +35,6 @@ require '../../php/session.php';
             </div>
             <div class="navigation-bar">
                 <a href="reg-korisnik.php" class="link-buttons">Početna</a>
-                <a href="prijava.php" class="link-buttons">Prijava</a>
-                <a href="registracija.php" class="link-buttons">Registracija</a>
                 <a href="../o_autoru.html" class="link-buttons">Autor</a>
                 <div class="hover-links">
                     <button class="dropdownBtn-active">Popis &darr;</button>
@@ -44,8 +42,6 @@ require '../../php/session.php';
                         <a href="upravljanje_posiljkama.php" class="link-buttons">Upravljanje pošiljkama</a>
                         <a href="postanski-uredi.php" class="link-buttons">Poštanski uredi</a>
                         <a href="izdani-racuni.php" class="link-active">Izdani računi</a>
-                        <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
-                        <a href="drzave.php" class="link-buttons">Države</a>
                     </div>
                 </div>
             </div>

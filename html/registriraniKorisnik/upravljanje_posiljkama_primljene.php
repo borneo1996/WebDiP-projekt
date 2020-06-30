@@ -44,8 +44,6 @@ require '../../php/https.php';
                     <a href="upravljanje_posiljkama.php" class="link-active">Upravljanje pošiljkama</a>
                     <a href="postanski-uredi.php" class="link-buttons">Poštanski uredi</a>
                     <a href="izdani-racuni.php" class="link-buttons">Izdani računi</a>
-                    <a href="korisnici.php" class="link-buttons">Popis korisnika</a>
-                    <a href="drzave.php" class="link-buttons">Države</a>
                 </div>
             </div>
         </div>
@@ -60,7 +58,7 @@ require '../../php/https.php';
             <p><strong>Moje pošiljke - primljene</strong></p>
         </div>
         <div class="additionalLinks">
-        <a href="upravljanje_posiljkama.php" class="link-subbuttons">Poslane</a>
+            <a href="upravljanje_posiljkama.php" class="link-subbuttons">Poslane</a>
             <a href="upravljanje_posiljkama_primljene.php" class="link-subbuttons-active">Primljene</a>
         </div>
         <div class="div-table">

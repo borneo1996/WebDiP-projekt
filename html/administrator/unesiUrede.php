@@ -4,10 +4,10 @@ require '../../php/session.php';
 
 $veza = new Baza();
 $veza->spojiDB();
-if(isset($_POST['kreirajposiljku'])){
-    $mojid = $_COOKIE['identifikator'];
-    $id = $_POST['korisnik'];
-    $tezina = $_POST['tezina'];
+if(isset($_POST['dodajurede'])){
+    $idzapisa = $_COOKIE['zapis_id'];
+    $polazniured = $_POST['polazni_id'];
+    $odredisniured = $_POST['odredisni_id'];
 }
 $upit = "INSERT INTO pošiljka (kilaža, korisnik_ID, korisniku) VALUES ('$tezina', '$mojid', '$id')";
 $veza->updateDB($upit, "upravljanje_posiljkama.php");
