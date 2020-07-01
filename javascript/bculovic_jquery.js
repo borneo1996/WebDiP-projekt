@@ -222,6 +222,91 @@ $(document).ready(function () {
         $("#tablicaUreda").dataTable({"pageLength": 8});
 
     }
+
+    if (naslov == "Poštanski uredi - Korisnik") {
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/postanski_uredi.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (uredi) {
+                const p_uredi = $(uredi);
+                const tablica = $('#tablicaUreda');
+                var i = 0;
+                var count = p_uredi.length;
+                for(i;i<count;i++){
+                    var id = p_uredi[i].ured_id;
+                    var naziv = p_uredi[i].naziv;
+                    var adresa = p_uredi[i].adresa;
+                    var grad = p_uredi[i].grad;
+                    var drzava = p_uredi[i].naziv_drzave;
+                    var moderator = p_uredi[i].ime + " " + p_uredi[i].prezime;
+                    var promljene_posiljke = p_uredi[i].broj_primljenih_pošiljki;
+                    var poslane_posiljke = p_uredi[i].broj_poslanih_pošiljki;
+                    var redak = $('<tr>').append(
+                        $('<td>').text(id),
+                        $('<td>').text(naziv),
+                        $('<td>').text(adresa),
+                        $('<td>').text(grad),
+                        $('<td>').text(drzava),
+                        $('<td>').text(moderator),
+                        $('<td>').text(promljene_posiljke),
+                        $('<td>').text(poslane_posiljke)
+                    );
+                    tablica.append(redak);
+                }
+                $("#tablicaUreda").dataTable({"pageLength": 8});
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+
+    }
+
+    if (naslov == "Poštanski uredi - Admin") {
+        var drzavaInput = "";
+        var drzavaInputDuljina = drzavaInput.length;
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/postanski_uredi.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (uredi) {
+                const p_uredi = $(uredi);
+                const tablica = $('#tablicaUreda');
+                var i = 0;
+                var count = p_uredi.length;
+                for(i;i<count;i++){
+                    var id = p_uredi[i].ured_id;
+                    var naziv = p_uredi[i].naziv;
+                    var adresa = p_uredi[i].adresa;
+                    var grad = p_uredi[i].grad;
+                    var drzava = p_uredi[i].naziv_drzave;
+                    var moderator = p_uredi[i].ime + " " + p_uredi[i].prezime;
+                    var promljene_posiljke = p_uredi[i].broj_primljenih_pošiljki;
+                    var poslane_posiljke = p_uredi[i].broj_poslanih_pošiljki;
+                    
+                    var redak = $('<tr>').append(
+                        $('<td>').text(id),
+                        $('<td>').text(naziv),
+                        $('<td>').text(adresa),
+                        $('<td>').text(grad),
+                        $('<td>').text(drzava),
+                        $('<td>').text(moderator),
+                        $('<td>').text(promljene_posiljke),
+                        $('<td>').text(poslane_posiljke)
+                    );
+                    tablica.append(redak);
+                }
+                $("#tablicaUreda").dataTable({"pageLength": 8});
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+        
+
+    }
+
     if (naslov == "Izdani računi") {
         $.ajax({
             url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/izdaniRacuni.php',
@@ -935,20 +1020,32 @@ $(document).ready(function () {
                     var i_obrade = zahtjevi[i].iznos_obrade;
                     var cijena_posiljke = zahtjevi[i].cijena_pošiljke;
                     var uk_cijena = zahtjevi[i].ukupna_cijena;
+                    var prihvacen = zahtjevi[i].prihvaćen;
+                    console.log(prihvacen);
+                    if(prihvacen == 0){
+                        var option = document.createElement('option');
+                        option.value = id;
+                        option.innerHTML = id;
+                        select.appendChild(option);
 
-                    var option = document.createElement('option');
-                    option.value = id;
-                    option.innerHTML = id;
-                    select.appendChild(option);
-
-                    var redak = $('<tr>').append(
-                        $('<td class="tableCell">').text(id),
-                        $('<td class="tableCell">').text(i_obrade),
-                        $('<td class="tableCell">').text(cijena_posiljke),
-                        $('<td class="tableCell">').text(uk_cijena),
-                        $('<td class="tableCell">').text(idposiljke)
-                    );
-                    tablica.append(redak);
+                        var redak = $('<tr>').append(
+                            $('<td class="tableCell">').text(id),
+                            $('<td class="tableCell">').text(i_obrade),
+                            $('<td class="tableCell">').text(cijena_posiljke),
+                            $('<td class="tableCell">').text(uk_cijena),
+                            $('<td class="tableCell">').text(idposiljke)
+                        );
+                        tablica.append(redak);
+                    } else if(prihvacen == 1){
+                        var redak = $('<tr>').append(
+                            $('<td class="tableCell">').text(id),
+                            $('<td class="tableCell">').text(i_obrade),
+                            $('<td class="tableCell">').text(cijena_posiljke),
+                            $('<td class="tableCell">').text(uk_cijena),
+                            $('<td class="tableCell">').text(idposiljke)
+                        );
+                        tablica.append(redak);
+                    }
                 }
                 $("#tablicaZahtjevi").dataTable({"pageLength": 8});
             },

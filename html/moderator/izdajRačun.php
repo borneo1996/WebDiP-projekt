@@ -17,7 +17,7 @@ $var=$rezultat->fetch_array();
 $cijenaposiljke = intval($var[0]);
 $ukcijena = $cijenaposiljke + $iznosobrade;
 
-$upitZahtjev = "UPDATE zahtjevi_za_izdavanjem_računa SET iznos_obrade='{$iznosobrade}', ukupna_cijena='{$ukcijena}'";
+$upitZahtjev = "UPDATE zahtjevi_za_izdavanjem_računa SET iznos_obrade='{$iznosobrade}', ukupna_cijena='{$ukcijena}', prihvaćen=1";
 $veza->selectDB($upitZahtjev);
 
 $upit = "INSERT INTO račun (izdao, iznos_obrade, cijena_pošiljke, ukupni_iznos, zahtjev_id) VALUES ('{$idmoda}','{$iznosobrade}','{$cijenaposiljke}','{$ukcijena}','{$idzahtjev}')";

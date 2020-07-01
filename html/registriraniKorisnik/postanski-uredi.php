@@ -22,7 +22,7 @@ if(!isset($_SESSION['ulogiraniKorisnik'])){
 <html lang="hr">
 
 <head>
-    <title>Poštanski uredi</title>
+    <title>Poštanski uredi - Korisnik</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -74,8 +74,6 @@ if(!isset($_SESSION['ulogiraniKorisnik'])){
         </div>
 
         <div class="div-table">
-            <label for="pretraga">Pretraži po državi</label><br>
-            <input type="text" name="pretraga" id="pretraga" placeholder="Država"><br><hr><br>
             <table id="tablicaUreda" class="tablica">
                 <thead id="tHead">
                     <tr>

@@ -22,7 +22,7 @@ if(!isset($_SESSION['ulogiraniKorisnik'])){
 <html lang="hr">
 
 <head>
-    <title>Poštanski uredi</title>
+    <title>Poštanski uredi - Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
