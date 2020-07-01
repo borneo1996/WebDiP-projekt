@@ -113,7 +113,6 @@ $(document).ready(function () {
         });
     }
     if (naslov == "Poštanski uredi") {
-        console.log(naslov);
         var drzavaInput = "";
         var drzavaInputDuljina = drzavaInput.length;
         $.ajax({
@@ -275,6 +274,59 @@ $(document).ready(function () {
             } 
         });
     }
+
+    if (naslov == "Moji računi - mod") {
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/html/moderator/mojiIzdaniRacuni.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (rezultat) {
+                const racuni = $(rezultat);
+                const tablica = $('#tablicaMojiRacuni');
+                var i = 0;
+                var count = racuni.length;
+                for(i;i<count;i++){
+                    
+                    var id = racuni[i].račun_id;
+                    var vr_izdavanja = racuni[i].vrijeme_izdavanja;
+                    var rok_placanja = racuni[i].rok_plaćanja;
+                    var placen = racuni[i].plaćen;
+                    if(placen == 1){
+                        placen = "DA";
+                    } else {
+                        placen = "NE";
+                    }
+                    var i_obrade = racuni[i].iznos_obrade;
+                    var cijena_posiljke = racuni[i].cijena_pošiljke;
+                    var uk_cijena = racuni[i].ukupni_iznos;
+
+                    var redak = $('<tr>').append(
+                        $('<td class="tableCell">').text(id),
+                        $('<td class="tableCell">').text(vr_izdavanja),
+                        $('<td class="tableCell">').text(rok_placanja),
+                        $('<td class="tableCell">').text(placen),
+                        $('<td class="tableCell">').text(i_obrade),
+                        $('<td class="tableCell">').text(cijena_posiljke),
+                        $('<td class="tableCell">').text(uk_cijena)
+                    );
+                    tablica.append(redak);
+                }
+                $("#tablicaMojiRacuni").dataTable({"pageLength": 8});
+                $('.tableCell').each(function(){
+                    var tekst = $(this).text();
+                    if(tekst == 'NE'){
+                        $(this).css('background','#ff95a3');
+                    } else if (tekst == 'DA'){
+                        $(this).css('background','#baffbb');
+                    }
+                })
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+    }
+
     if (naslov == "Upravljanje pošiljkama") {
         $.ajax({
             url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/upravljanjePošiljkama.php',
@@ -858,6 +910,15 @@ $(document).ready(function () {
     }
 
     if (naslov == "Zahtjevi za računom") {
+        document.getElementById("izdajRacun").disabled = true;
+        $("#iznosobrade").on('input', function(){
+            iznosobrade = document.getElementById("iznosobrade").value;
+            if(iznosobrade < 1){
+                document.getElementById("izdajRacun").disabled = true;
+            } else {
+                document.getElementById("izdajRacun").disabled = false;
+            }
+        })
         $.ajax({
             url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/zahtjeviRacun.php',
             type: 'GET',
@@ -867,12 +928,19 @@ $(document).ready(function () {
                 const tablica = $('#tablicaZahtjevi');
                 var i = 0;
                 var count = zahtjevi.length;
+                var select = document.getElementById('idzahtjev');
                 for(i;i<count;i++){
                     var id = zahtjevi[i].zahtjev_id;
                     var idposiljke = zahtjevi[i].pošiljka_id;
                     var i_obrade = zahtjevi[i].iznos_obrade;
                     var cijena_posiljke = zahtjevi[i].cijena_pošiljke;
                     var uk_cijena = zahtjevi[i].ukupna_cijena;
+
+                    var option = document.createElement('option');
+                    option.value = id;
+                    option.innerHTML = id;
+                    select.appendChild(option);
+
                     var redak = $('<tr>').append(
                         $('<td class="tableCell">').text(id),
                         $('<td class="tableCell">').text(i_obrade),
@@ -883,6 +951,109 @@ $(document).ready(function () {
                     tablica.append(redak);
                 }
                 $("#tablicaZahtjevi").dataTable({"pageLength": 8});
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+    }
+
+    if (naslov == "Upravljanje pošiljkama - Moderator") {
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/upravljanjePošiljkamaModerator.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (rezultat) {
+                const posiljke = $(rezultat);
+                const tablica = $('#tablicaPosiljke');
+                var selectposiljka = document.getElementById('idposiljke');
+                var selectposiljka2 = document.getElementById('idposiljke2');
+                var i = 0;
+                var count = posiljke.length;
+                for(i;i<count;i++){
+                    var id = posiljke[i].pošiljka_id;
+                    var cijenapkg = posiljke[i].cijena_po_kg;
+                    var kilaza = posiljke[i].kilaža;
+                    var isporuka = posiljke[i].isporuka;
+                    var dostavljen = posiljke[i].dostavljena;
+                    var starting = posiljke[i].pocetni;
+                    var next = posiljke[i].sljedeci;
+                    var last = posiljke[i].zadnji;
+                    var od = posiljke[i].prviime + " " + posiljke[i].prviprezime;
+                    var za = posiljke[i].drugiime + " " + posiljke[i].drugiprezime;
+                    if(next==last && isporuka == 0){
+                        var option = document.createElement('option');
+                        selectposiljka.appendChild(option);
+                        option.value = id;
+                        option.innerHTML = id;
+                    }
+                    if(next!=last && isporuka == 0){
+                        var option2 = document.createElement('option');
+                        option2.value = id;
+                        option2.innerHTML = id;
+                        selectposiljka2.appendChild(option2);
+                    }
+
+                    if(isporuka == 1){
+                        isporuka = "DA";
+                    } else {
+                        isporuka = "NE";
+                    }
+
+                    if(dostavljen == 1){
+                        dostavljen = "DA";
+                    } else {
+                        dostavljen = "NE";
+                    }
+
+                    var redak = $('<tr>').append(
+                        $('<td class="tableCell">').text(id),
+                        $('<td class="tableCell">').text(cijenapkg),
+                        $('<td class="tableCell">').text(kilaza),
+                        $('<td class="tableCell">').text(isporuka),
+                        $('<td class="tableCell">').text(dostavljen),
+                        $('<td class="tableCell">').text(starting),
+                        $('<td class="tableCell">').text(next),
+                        $('<td class="tableCell">').text(last),
+                        $('<td class="tableCell">').text(od),
+                        $('<td class="tableCell">').text(za)
+                    );
+                    tablica.append(redak);
+                }
+                $("#tablicaPosiljke").dataTable({"pageLength": 8});
+                $('.tableCell').each(function(){
+                    var tekst = $(this).text();
+                    if(tekst == 'DA'){
+                        $(this).css('background','#baffbb');
+                    }else if(tekst == 'NE') {
+                        $(this).css('background','#ff95a3');
+                    }
+                })
+            },
+            error : function() {
+                console.log("Error");
+            } 
+        });
+
+        $.ajax({
+            url: 'https://barka.foi.hr/WebDiP/2019_projekti/WebDiP2019x018/php/postanski_uredi.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (uredi) {
+                const p_uredi = $(uredi);
+                var selectured = document.getElementById('ured');
+                var i = 0;
+                var count = p_uredi.length;
+                for(i;i<count;i++){
+                    var id = p_uredi[i].ured_id;
+                    var naziv = p_uredi[i].naziv;
+
+                    var option = document.createElement('option');
+                    option.value = id;
+                    option.innerHTML = naziv;
+                    selectured.appendChild(option);
+                    
+                }
             },
             error : function() {
                 console.log("Error");

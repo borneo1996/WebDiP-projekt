@@ -59,9 +59,11 @@ require '../../php/session.php';
         </div>
         <div class="additionalLinks">
             <a href="racuni.php" class="link-subbuttons-active">Računi</a>
+            <a href="mojiracuni.php" class="link-subbuttons">Moji računi</a>
             <a href="zahtjevi.php" class="link-subbuttons">Zahtjevi</a>
         </div>
         <div class="div-table">
+            <legend>Svi računi</legend><br><br>
             <table id="tablicaRacuni" class="tablica">
                 <thead id="tHead">
                     <tr>

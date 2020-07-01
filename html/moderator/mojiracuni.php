@@ -8,7 +8,7 @@ require '../../php/session.php';
 <html lang="hr">
 
 <head>
-    <title>Zahtjevi za računom</title>
+    <title>Moji računi - mod</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="date" content="03-06-2020">
@@ -55,40 +55,32 @@ require '../../php/session.php';
 
     <div class="main-content">
         <div class="page-title">
-            <p><strong>Zahtjevi za računom</strong></p>
+            <p><strong>Moji računi</strong></p>
         </div>
         <div class="additionalLinks">
             <a href="racuni.php" class="link-subbuttons">Računi</a>
-            <a href="mojiracuni.php" class="link-subbuttons">Moji računi</a>
-            <a href="zahtjevi.php" class="link-subbuttons-active">Zahtjevi</a>
+            <a href="mojiracuni.php" class="link-subbuttons-active">Moji računi</a>
+            <a href="zahtjevi.php" class="link-subbuttons">Zahtjevi</a>
         </div>
         <div class="div-table">
-            <legend>Zahtjevi</legend><br><br>
-            <table id="tablicaZahtjevi" class="tablica">
+            <legend>Svi računi koje sam izdao</legend><br><br>
+            <table id="tablicaMojiRacuni" class="tablica">
                 <thead id="tHead">
                     <tr>
                         <th>ID</th>
-                        <th>Iznos obrade</th>
-                        <th>Cijena pošiljke</th>
-                        <th>Ukupna cijena</th>
-                        <th>Pošiljka</th>
+                        <th>Vrijeme izdavanja</th>
+                        <th>Rok plaćanja</th>
+                        <th>Plaćen</th>
+                        <th>Cijena pošiljke (u kn)</th>
+                        <th>Cijena obrade (u kn)</th>
+                        <th>Ukupna cijena (u kn)</th>
                     </tr>
                 </thead>
                 <tbody id="tBody">
     
                 </tbody>
                 
-            </table><br><hr><br>
-            <div class="universal-form">
-                <legend>Izdaj račun</legend><br>
-                <form method="post" action="izdajRačun.php">
-                    <label for="idzahtjev" class="form-label">ID zahtjeva</label>
-                    <select class="form-input" id="idzahtjev" name="idzahtjev"></select><br><br>
-                    <label for="iznosobrade" class="form-label">Iznos obrade</label>
-                    <input type="number" class="form-input" id="iznosobrade" name="iznosobrade"><br><br>
-                    <input type="submit" id="izdajRacun" name="izdajRacun" value="Kreiraj račun">
-                </form><br><br>
-            </div
+            </table>
     
         </div>
 

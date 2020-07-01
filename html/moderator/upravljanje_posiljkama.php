@@ -58,10 +58,6 @@ require '../../php/https.php';
         <div class="page-title">
             <p><strong>Upravljanje pošiljkama</strong></p>
         </div>
-        <div class="additionalLinks">
-            <a href="upravljanje_posiljkama.php" class="link-subbuttons-active">Pošiljke</a>
-            <a href="upravljanje_posiljkama_kreirane.php" class="link-subbuttons">Kreirane pošiljke</a>
-        </div>
         <div class="div-table">
             <table id="tablicaPosiljke" class="tablica">
                 <thead id="tHead">
@@ -82,7 +78,25 @@ require '../../php/https.php';
     
                 </tbody>
                 
-            </table>
+            </table><br><hr><br>
+            <div class="universal-form">
+                <legend>Spremno za isporuku</legend><br>
+                <form method="post" action="isporukaDA.php">
+                    <label for="idposiljke" class="form-label">ID pošiljke</label>
+                    <select class="form-input" id="idposiljke" name="idposiljke"></select><br><br>
+                    <input type="submit" id="isporuka" name="isporuka" value="Spremno za isporuku">
+                </form><br><br>
+            </div><br><hr><br>
+            <div class="universal-form">
+                <legend>Sljedeci ured</legend><br>
+                <form method="post" action="proslijediPosiljku.php">
+                    <label for="idposiljke2" class="form-label">ID pošiljke</label>
+                    <select class="form-input" id="idposiljke2" name="idposiljke2"></select><br><br>
+                    <label for="ured" class="form-label">Ured</label>
+                    <select class="form-input" id="ured" name="ured"></select><br><br>
+                    <input type="submit" id="proslijedi" name="proslijedi" value="Proslijedi pošiljku">
+                </form><br><br>
+            </div>
         </div>
 
     <div class="footer">
